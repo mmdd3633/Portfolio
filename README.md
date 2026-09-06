@@ -26,7 +26,7 @@
 ## 🚀 Projects
 
 ### 1. BLE 비콘과 스마트폰을 활용한 실내 화재 대피 안내 시스템 (졸업 작품)
-> **기간:** 2026.03 ~ 현재  
+> **기간:** 2025.09 ~ 2026.08  
 > **기술 스택:** BLE (Bluetooth Low Energy), Mobile App, Server/DB, C++
 
 - **프로젝트 개요:** 복잡한 실내 환경에서 화재 발생 시, 실내에 구축된 BLE 비콘과 사용자의 스마트폰을 연동하여 실시간으로 최적의 안전 대피 경로를 안내하는 시스템 개발.
@@ -50,12 +50,3 @@
 - **주요 구현 내용:**
   - **정밀 가감속 제어 알고리즘:** 이송 중 웨이퍼의 파손 및 진동을 방지하기 위해 로봇 구동 모터의 정밀한 가감속(Acceleration/Deceleration) 프로파일 제어 로직 구현.
   - **로봇-센서 인터페이스 구축:** 센서 피드백을 활용하여 최적의 이송 경로와 속도를 산출하는 제어 메커니즘 구축.
-
----
-
-## 📈 GitHub Stats
-<p>
-  <img src="https://github-readme-stats.vercel.app/api?username=본인깃허브아이디&show_icons=true&theme=radium" alt="Gi-min's GitHub Stats" />
-</p>
-
-<!-- 본인깃허브아이디 부분에 실제 GitHub Username을 입력해주세요. -->

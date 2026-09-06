@@ -1,0 +1,53 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 도면/비콘/화재 상태/위치 모두 공개 읽기 (대피 안내용)
+    match /cad_maps/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    match /status/{id} {
+      allow read: if true;
+      // 데모용: 화재 토글 위해 익명 쓰기 허용
+      allow write: if true;
+    }
+
+    match /user_location/{id} {
+      allow read: if true;
+      // 데모용: 위치 시뮬레이션 위해 쓰기 허용
+      allow write: if true;
+    }
+
+    match /user_locations/{id} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /ble_scans/{id} {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    match /admin/test {
+      allow read: if true;
+      allow write: if true;
+    }
+
+    // 기존 시드 컬렉션들 (사용 안 함이지만 호환)
+    match /floors/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+    match /beacons/{id} {
+      allow read: if true;
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['onFire']);
+      allow create, delete: if false;
+    }
+    match /routeNodes/{id} {
+      allow read: if true;
+      allow write: if false;
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "beacons",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "floorId", "order": "ASCENDING" },
+        { "fieldPath": "onFire", "order": "ASCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

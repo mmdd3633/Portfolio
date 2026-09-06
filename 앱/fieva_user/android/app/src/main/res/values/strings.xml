@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Fieva User</string>
+    <string name="volume_key_accessibility_service_label">Fieva 볼륨 키 실행</string>
+    <string name="volume_key_accessibility_service_description">화재 알림 상황에서 볼륨 업 키를 누르면 Fieva 앱을 실행합니다.</string>
+</resources>

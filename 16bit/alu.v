@@ -1,0 +1,1096 @@
+module shift_left_1bit_gate (
+    input  [15:0] in,
+    input         in_bit, // ??? LSB
+    output [15:0] out
+);
+    // out[15] = in[14], ..., out[1] = in[0], out[0] = in_bit
+    assign out[15] = in[14];
+    assign out[14] = in[13];
+    assign out[13] = in[12];
+    assign out[12] = in[11];
+    assign out[11] = in[10];
+    assign out[10] = in[9];
+    assign out[9]  = in[8];
+    assign out[8]  = in[7];
+    assign out[7]  = in[6];
+    assign out[6]  = in[5];
+    assign out[5]  = in[4];
+    assign out[4]  = in[3];
+    assign out[3]  = in[2];
+    assign out[2]  = in[1];
+    assign out[1]  = in[0];
+    assign out[0]  = in_bit;
+endmodule
+
+module shift_left_1bit_gate_8bit (
+    input  [7:0] in,
+    input        in_bit,
+    output [7:0] out
+);
+    assign out[7] = in[6];
+    assign out[6] = in[5];
+    assign out[5] = in[4];
+    assign out[4] = in[3];
+    assign out[3] = in[2];
+    assign out[2] = in[1];
+    assign out[1] = in[0];
+    assign out[0] = in_bit;
+endmodule
+
+module adder_8bit (
+    input  [7:0] A,
+    input  [7:0] B,
+    input        cin,
+    output [7:0] sum,
+    output       cout
+);
+    wire [7:0] c;
+
+    full_adder fa0 (.a(A[0]), .b(B[0]), .cin(cin),     .sum(sum[0]), .cout(c[0]));
+    full_adder fa1 (.a(A[1]), .b(B[1]), .cin(c[0]),    .sum(sum[1]), .cout(c[1]));
+    full_adder fa2 (.a(A[2]), .b(B[2]), .cin(c[1]),    .sum(sum[2]), .cout(c[2]));
+    full_adder fa3 (.a(A[3]), .b(B[3]), .cin(c[2]),    .sum(sum[3]), .cout(c[3]));
+    full_adder fa4 (.a(A[4]), .b(B[4]), .cin(c[3]),    .sum(sum[4]), .cout(c[4]));
+    full_adder fa5 (.a(A[5]), .b(B[5]), .cin(c[4]),    .sum(sum[5]), .cout(c[5]));
+    full_adder fa6 (.a(A[6]), .b(B[6]), .cin(c[5]),    .sum(sum[6]), .cout(c[6]));
+    full_adder fa7 (.a(A[7]), .b(B[7]), .cin(c[6]),    .sum(sum[7]), .cout(cout));
+endmodule
+
+module adder_16bit(input [15:0] A, input [15:0] B, input cin, output [15:0] sum, output cout);
+    wire [15:0] carry;
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin: full_adder_chain
+            if (i == 0)
+                full_adder fa (A[i], B[i], cin, sum[i], carry[i]);
+            else
+                full_adder fa (A[i], B[i], carry[i-1], sum[i], carry[i]);
+        end
+    endgenerate
+    assign cout = carry[15];
+endmodule
+
+
+
+module add8_lo (
+    input  [7:0] A,
+    input  [7:0] B,
+    input        cin,
+    output [7:0] sum,
+    output       cout
+);
+    wire [7:0] internal_sum;
+    wire       internal_cout;
+
+    adder_8bit adder (
+        .A(A),
+        .B(B),
+        .cin(cin),
+        .sum(internal_sum),
+        .cout(internal_cout)
+    );
+
+    assign sum  = internal_sum;
+    assign cout = internal_cout;
+endmodule
+
+module adc8_lo (
+    input  [7:0] A,
+    input  [7:0] B,
+    input        cin,
+    output [7:0] sum,
+    output       cout
+);
+    wire [7:0] internal_sum;
+    wire       internal_cout;
+
+    adder_8bit adder (
+        .A(A),
+        .B(B),
+        .cin(cin),
+        .sum(internal_sum),
+        .cout(internal_cout)
+    );
+
+    assign sum  = internal_sum;
+    assign cout = internal_cout;
+endmodule
+
+module sub8_lo (
+    input  [7:0] A,
+    input  [7:0] B,
+    output [7:0] diff,
+    output       cout
+);
+    wire [7:0] B_inv;
+    assign B_inv = ~B;
+
+    wire [7:0] internal_diff;
+    wire       internal_cout;
+
+    adder_8bit adder (
+        .A(A),
+        .B(B_inv),
+        .cin(1'b1),  // A - B = A + ~B + 1
+        .sum(internal_diff),
+        .cout(internal_cout)
+    );
+
+    assign diff = internal_diff;
+    assign cout = internal_cout;
+endmodule
+
+module sbc8_lo (
+    input  [7:0] A,
+    input  [7:0] B,
+    input        cin,  // carry in = ~C
+    output [7:0] diff,
+    output       cout
+);
+    wire [7:0] B_inv;
+    assign B_inv = ~B;
+
+    wire [7:0] internal_diff;
+    wire       internal_cout;
+
+    adder_8bit adder (
+        .A(A),
+        .B(B_inv),
+        .cin(cin),
+        .sum(internal_diff),
+        .cout(internal_cout)
+    );
+
+    assign diff = internal_diff;
+    assign cout = internal_cout;
+endmodule
+
+module and_8bit (
+    input  [7:0] A,
+    input  [7:0] B,
+    output [7:0] Y
+);
+    genvar i;
+    generate
+        for (i = 0; i < 8; i = i + 1)
+            and (Y[i], A[i], B[i]);
+    endgenerate
+endmodule
+
+module and_16bit (
+    input  [15:0] A,
+    input  [15:0] B,
+    output [15:0] Y
+);
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin : and_gate
+            and (Y[i], A[i], B[i]);
+        end
+    endgenerate
+endmodule
+
+
+
+
+module carry_adder_32 (
+    input  [31:0] A,
+    input  [31:0] B,
+    output [31:0] sum,
+    output        cout
+);
+    wire [31:0] carry;
+
+    assign carry[0] = 1'b0;
+
+    genvar i;
+    generate
+        for (i = 0; i < 32; i = i + 1) begin : gen_fa
+            full_adder fa (
+                .a(A[i]),
+                .b(B[i]),
+                .cin(carry[i]),
+                .sum(sum[i]),
+                .cout(carry[i+1])
+            );
+        end
+    endgenerate
+
+    assign cout = carry[32];
+endmodule
+
+module comparator_16bit (
+    input  [15:0] A,
+    input  [15:0] B,
+    output        GE
+);
+    wire lt, eq;
+
+    compare_core core (
+        .A(A),
+        .B(B),
+        .lt(lt),
+        .eq(eq)
+    );
+
+    // GE = ~lt = lt NAND 1
+    nand (GE, lt, 1'b1);
+endmodule
+
+
+module compare_core (
+    input  [15:0] A,
+    input  [15:0] B,
+    output        lt,
+    output        eq
+);
+    wire [15:0] lt_bit, gt_bit, eq_bit;
+    wire [15:0] lt_stage, gt_stage, eq_stage;
+
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin : compare_bit
+            wire notA, notB;
+            not (notA, A[i]);
+            not (notB, B[i]);
+            and (lt_bit[i], notA, B[i]);
+            and (gt_bit[i], A[i], notB);
+            xnor (eq_bit[i], A[i], B[i]);
+        end
+    endgenerate
+
+    assign lt_stage[15] = lt_bit[15];
+    assign gt_stage[15] = gt_bit[15];
+    assign eq_stage[15] = eq_bit[15];
+
+    genvar j;
+    generate
+        for (j = 14; j >= 0; j = j - 1) begin : priority_compare
+            wire eq_next;
+            and (eq_stage[j], eq_bit[j], eq_stage[j+1]);
+
+            wire lt_temp;
+            and (lt_temp, eq_stage[j+1], lt_bit[j]);
+            or  (lt_stage[j], lt_stage[j+1], lt_temp);
+
+            wire gt_temp;
+            and (gt_temp, eq_stage[j+1], gt_bit[j]);
+            or  (gt_stage[j], gt_stage[j+1], gt_temp);
+        end
+    endgenerate
+
+    assign lt = lt_stage[0];
+    assign eq = eq_stage[0];
+    
+endmodule
+
+module divider_8bit (
+    input  [7:0] A,
+    input  [7:0] B,
+    output reg [7:0] Q,
+    output reg [7:0] R
+);
+    integer i;
+    reg [7:0] dividend;
+    reg [7:0] divisor;
+    reg [7:0] temp;
+    wire [7:0] shifted_temp;
+    wire [7:0] shifted_dividend;
+
+    // ???? ??? ?? ?? ?? assign ??
+    assign shifted_temp      = {temp[6:0], dividend[7]};
+    assign shifted_dividend  = {dividend[6:0], 1'b0};
+
+  always @(*) begin
+    dividend = A;
+    divisor  = B;
+    temp     = 8'b0;
+    Q        = 8'b0;
+
+    if (divisor == 0) begin
+        Q = 8'b0;
+        R = 8'b0;
+    end else begin
+        for (i = 7; i >= 0; i = i - 1) begin
+            temp     = {temp[6:0], dividend[7]};
+            dividend = {dividend[6:0], 1'b0};
+
+            if (temp >= divisor) begin
+                temp = temp - divisor;
+                Q[i] = 1;
+            end else begin
+                Q[i] = 0;
+            end
+        end
+        R = temp;
+    end
+ end
+endmodule
+
+module divider_16bit (
+    input  [15:0] A,
+    input  [15:0] B,
+    output [15:0] Q,
+    output [15:0] R
+);
+    wire [31:0] dividend_ext;
+    wire [15:0] remainder_wire [0:16];
+    wire [15:0] subtract_result [0:15];
+    wire        compare_ge [0:15];
+    wire [15:0] Q_internal;
+    wire [15:0] shifted_rem [0:15];
+
+    // {16'b0, A} ? ???? dividend_ext? ??
+    assign dividend_ext[31:16] = 16'b0;   // ?? 16??? 0?? ??
+    assign dividend_ext[15:0] = A;         // ?? 16??? A? ??? ??
+
+    assign remainder_wire[0] = 16'b0;  // ?? ??? ?
+
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin : div_loop
+            // shift_left_1bit_gate ???? 1??? ???? ???
+            shift_left_1bit_gate shift_rem (
+                .in(remainder_wire[i]),  // ?? ???
+                .in_bit(dividend_ext[31 - i]),  // ??? ??? dividend_ext?? ???
+                .out(shifted_rem[i])  // ???? ??
+            );
+
+            // ?? ??? ???? ???? B?? ?? ??? ??
+            comparator_16bit cmp (
+                .A(shifted_rem[i]),
+                .B(B),
+                .GE(compare_ge[i])  // ???? B?? ??? ??? ??
+            );
+
+            // ???? B?? ??? ??? ?? ??
+            subtractor_16bit sub (
+                .A(shifted_rem[i]),
+                .B(B),
+                .Y(subtract_result[i])  // ????? B? ? ??
+            );
+
+            // MUX2to1? ???? ???? ????
+            mux2to1_16bit rem_mux (
+                .sel(compare_ge[i]),   // ???? B?? ??? ??? ??
+                .in0(shifted_rem[i]),  // ?? ??? False? ? ??? ? ???
+                .in1(subtract_result[i]),  // ?? ??? True? ? ?? ?? ? ???
+                .out(remainder_wire[i+1])  // ????? ??? ?
+            );
+
+            assign Q_internal[i] = compare_ge[i];  // ?? ???? B?? ??? ?? ???? 1? ??
+        end
+    endgenerate
+
+    assign Q = Q_internal;  // 16?? ?
+    assign R = remainder_wire[16];  // 16?? ???
+endmodule
+
+module full_adder(input a, input b, input cin, output sum, output cout);
+    wire w1, w2, w3;
+    xor (w1, a, b);
+    xor (sum, w1, cin);
+    and (w2, a, b);
+    and (w3, w1, cin);
+    or  (cout, w2, w3);
+endmodule
+
+
+module modulo_8bit (
+    input  [7:0] A,
+    input  [7:0] B,
+    output reg [7:0] R
+);
+    integer i;
+    reg [7:0] dividend;
+    reg [7:0] divisor;
+    reg [7:0] temp;
+    reg [7:0] new_temp;
+    reg [7:0] new_dividend;
+
+    always @(*) begin
+        dividend = A;
+        divisor  = B;
+        temp     = 8'b0;
+
+        if (divisor == 0) begin
+            R = 8'b0;
+        end else begin
+            for (i = 7; i >= 0; i = i - 1) begin
+                // shift? ?? ?? ???? ?? (?? ???? ??)
+                new_temp     = {temp[6:0], dividend[7]};
+                new_dividend = {dividend[6:0], 1'b0};
+
+                if (new_temp >= divisor)
+                    temp = new_temp - divisor;
+                else
+                    temp = new_temp;
+
+                dividend = new_dividend;
+            end
+            R = temp;
+        end
+    end
+endmodule
+
+
+module modulo_16bit (
+    input  [15:0] A,
+    input  [15:0] B,
+    output [15:0] R
+);
+    wire [15:0] Q;  // quotient (unused)
+
+    divider_16bit div_unit (
+        .A(A),
+        .B(B),
+        .Q(Q),
+        .R(R)
+    );
+endmodule
+
+
+module multiplier_8bit (
+    input  [7:0] A,
+    input  [7:0] B,
+    output reg [7:0] Y
+);
+    integer i;
+    reg [15:0] result;
+    reg [15:0] multiplicand;
+
+    always @(*) begin
+        result = 16'b0;
+        multiplicand = {8'b0, A};  // A? 16??? ??
+
+        for (i = 0; i < 8; i = i + 1) begin
+            if (B[i]) begin
+                result = result + (multiplicand << i);  // ?? ????? ??
+            end
+        end
+
+        Y = result[7:0];  // ?? 8??? ??
+    end
+endmodule
+
+
+module multiplier_16x16 (
+    input  [15:0] A,
+    input  [15:0] B,
+    output [31:0] result
+);
+    wire [31:0] partial[15:0];   // ??? 16?
+    wire [31:0] sum [14:0];      // ?? ?
+    wire [31:0] carry [14:0];    // ?? carry
+
+    genvar i, j;
+
+    // ??? ?? (AND gate)
+    generate
+        for (i = 0; i < 16; i = i + 1) begin : gen_partial
+            for (j = 0; j < 16; j = j + 1) begin : gen_and
+                assign partial[i][j+i] = A[j] & B[i];  // A[j] ? B[i] ? i ?? ?? ???
+            end
+            for (j = 0; j < i; j = j + 1) begin : zero_fill
+                assign partial[i][j] = 1'b0;  // ?? ??? ?? 0 ??
+            end
+            for (j = i+16; j < 32; j = j + 1) begin : upper_zero
+                assign partial[i][j] = 1'b0;  // ?? ?? 0 ??
+            end
+        end
+    endgenerate
+
+    // ? ?? ? ? ??
+    carry_adder_32 add0 (.A(partial[0]), .B(partial[1]), .sum(sum[0]), .cout(carry[0]));
+
+    // ?? ??
+    generate
+        for (i = 2; i < 16; i = i + 1) begin : gen_adders
+            carry_adder_32 addx (
+                .A(sum[i-2]),
+                .B(partial[i]),
+                .sum(sum[i-1]),
+                .cout(carry[i-1])
+            );
+        end
+    endgenerate
+
+    assign result = sum[14];
+
+endmodule
+
+module mux2to1_16bit (
+    input        sel,
+    input  [15:0] in0,
+    input  [15:0] in1,
+    output [15:0] out
+);
+    wire [15:0] not_sel;
+    wire [15:0] sel_and_in1;
+    wire [15:0] notsel_and_in0;
+
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin : mux_gate
+            not u_not (not_sel[i], sel);
+            and u_and1 (sel_and_in1[i], sel, in1[i]);
+            and u_and0 (notsel_and_in0[i], not_sel[i], in0[i]);
+            or  u_or  (out[i], sel_and_in1[i], notsel_and_in0[i]);
+        end
+    endgenerate
+endmodule
+
+
+module not_8bit (
+    input  [7:0] A,
+    output [7:0] Y
+);
+    genvar i;
+    generate
+        for (i = 0; i < 8; i = i + 1)
+            not (Y[i], A[i]);
+    endgenerate
+endmodule
+
+
+module not_16bit (
+    input  [15:0] A,
+    output [15:0] Y
+);
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin : not_gate
+            not (Y[i], A[i]);
+        end
+    endgenerate
+endmodule
+
+module or_8bit (
+    input  [7:0] A,
+    input  [7:0] B,
+    output [7:0] Y
+);
+    genvar i;
+    generate
+        for (i = 0; i < 8; i = i + 1)
+            or (Y[i], A[i], B[i]);
+    endgenerate
+endmodule
+
+module or_16bit (
+    input  [15:0] A,
+    input  [15:0] B,
+    output [15:0] Y
+);
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin : or_gate
+            or (Y[i], A[i], B[i]);
+        end
+    endgenerate
+endmodule
+
+
+
+module register_file (
+    input clk,
+    input rst,
+    input [15:0] instruction,
+    input [15:0] write_data,
+    input reg_write,
+    output reg [15:0] op1,
+    output reg [15:0] op2,
+    output reg use_op2,
+    output reg [15:0] full_instruction
+);
+    reg [15:0] regs[0:15];
+    reg [3:0] rd_idx, rr_idx;
+    reg [3:0] rd_write_idx;
+    reg [7:0] imm8;
+    reg [6:0] decode_sig;
+
+    integer i;
+
+    // ALU ???? ??
+    always @(*) begin
+        full_instruction = instruction;
+        decode_sig = instruction[15:9];
+        imm8 = instruction[7:0];
+        use_op2 = 1;
+        rd_idx = instruction[7:4];
+        rr_idx = instruction[3:0];
+
+        // ?? ?? (NOT)
+        if (decode_sig == 7'b0011011 || decode_sig == 7'b0100111)
+            use_op2 = 0;
+    end
+
+    // write ??? index ??
+    always @(posedge clk) begin
+        rd_write_idx <= rd_idx;
+    end
+
+    // ?? ??
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            for (i = 0; i < 16; i = i + 1)
+                regs[i] <= 16'b0;
+        end else if (reg_write) begin
+            regs[rd_write_idx] <= write_data;
+        end
+    end
+
+    // ?? ??
+    always @(*) begin
+        op1 = regs[rd_idx];
+        op2 = use_op2 ? regs[rr_idx] : 16'b0;
+    end
+
+endmodule
+
+
+module subtractor_16bit (
+    input  [15:0] A,
+    input  [15:0] B,
+    output [15:0] Y,
+    output        cout
+);
+    wire [15:0] B_inv;
+    wire        cin;
+    wire [15:0] sum;
+  
+
+    assign cin = 1'b1;  // 2's complement: A + (~B + 1)
+
+    // B? ? ??? NOT ???? ??
+    
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin : invert_loop
+            not (B_inv[i], B[i]);  // B[i]? NOT ???? ??
+        end
+    endgenerate
+
+    // A + (~B) + 1 = A - B
+    adder_16bit adder (
+        .A(A),
+        .B(B_inv),
+        .cin(cin),
+        .sum(Y),
+        .cout(cout)
+    );
+endmodule
+
+module xor_8bit (
+    input  [7:0] A,
+    input  [7:0] B,
+    output [7:0] Y
+);
+    genvar i;
+    generate
+        for (i = 0; i < 8; i = i + 1)
+            xor (Y[i], A[i], B[i]);
+    endgenerate
+endmodule
+
+module xor_16bit (
+    input  [15:0] A,
+    input  [15:0] B,
+    output [15:0] Y
+);
+    genvar i;
+    generate
+        for (i = 0; i < 16; i = i + 1) begin : xor_gate
+            xor (Y[i], A[i], B[i]);
+        end
+    endgenerate
+endmodule
+
+module sbc_16bit (
+    input  [15:0] A,
+    input  [15:0] B,
+    input         cin,
+    output [15:0] sum,
+    output        cout
+);
+    wire [15:0] B_inv;
+    wire        internal_cout;
+
+    // B? ??? not_16bit? ?? (??? ?? ?? ?? ??)
+    not_16bit inverter (.A(B), .Y(B_inv));
+
+    // ??? carry in ??? ?? ??
+    adder_16bit sbc_adder (
+        .A(A),
+        .B(B_inv),
+        .cin(cin),
+        .sum(sum),
+        .cout(internal_cout)
+    );
+
+    assign cout = internal_cout;
+
+endmodule
+
+module sbc_8bit(
+    input  [7:0] A,
+    input  [7:0] B,
+    input        cin,
+    output [7:0] S,
+    output       cout 
+);
+    wire [7:0] B_inv;
+    wire       cout_internal;  // ? ?? ??
+
+    // NOT ??? B? ??? ??
+    not_8bit inverter (.A(B), .Y(B_inv));
+
+    adder_8bit adder (
+        .A(A),
+        .B(B_inv),
+        .cin(cin),
+        .sum(S),
+        .cout(cout_internal)
+    );
+    
+    assign cout = cout_internal;
+endmodule
+
+
+
+module subtractor_8bit (
+    input  [7:0] A,
+    input  [7:0] B,
+    output [7:0] S
+);
+    wire [7:0] B_inv;
+
+    not_8bit inverter (.A(B), .Y(B_inv));
+
+    adder_8bit adder (
+        .A(A),
+        .B(B_inv),
+        .cin(1'b1),
+        .sum(S),
+        .cout()
+    );
+endmodule
+
+
+
+// ===================
+// ALU(??, ??)
+// ===================
+module alu (
+    input  [15:0] reg_rd,
+    input  [15:0] reg_rr,
+    input  [6:0]  decoding_signal,
+    input         cin,
+    output [15:0] alu_result0,
+    output [15:0] alu_result1,
+    output [15:0] mem_data,
+    output [11:0] mem_addr,
+    output [7:0]  alu_flag
+);
+
+    // ?? ?? ???
+    wire [15:0] add_result, adc_result, sub_result, sbc_result;
+    wire cout_add, cout_adc, cout_sub, cout_sbc;
+    wire [31:0] mul_result;
+    wire [15:0] div_result, mod_result;
+    wire [15:0] and_result, or_result, xor_result, not_result;
+
+    wire [7:0] add8_result, adc8_result, sub8_result, sbc8_result;
+    wire [7:0] mul8_result, div8_result, mod8_result;
+    wire [7:0] and8_result, or8_result, xor8_result, not8_result;
+
+    wire [7:0] add8_lo_result, adc8_lo_result, sub8_lo_result, sbc8_lo_result;
+    wire [7:0] mul8_lo_result, div8_lo_result, mod8_lo_result;
+    wire [7:0] and8_lo_result, or8_lo_result, xor8_lo_result, not8_lo_result;
+
+    wire cout_add8_lo, cout_adc8_lo, cout_sub8_lo, cout_sbc8_lo;
+    wire cout_add8_hi, cout_adc8_hi, cout_sub8_hi, cout_sbc8_hi;
+
+    // ?? ?? ????
+    adder_16bit add16 (.A(reg_rd), .B(reg_rr), .cin(1'b0), .sum(add_result), .cout(cout_add));
+    adder_16bit adc16 (.A(reg_rd), .B(reg_rr), .cin(cin),  .sum(adc_result), .cout(cout_adc));
+    subtractor_16bit sub16 (.A(reg_rd), .B(reg_rr), .Y(sub_result));
+    sbc_16bit sbc16 (.A(reg_rd), .B(reg_rr), .cin(cin), .sum(sbc_result));
+    multiplier_16x16 mul16 (.A(reg_rd), .B(reg_rr), .result(mul_result));
+    divider_16bit div16 (.A(reg_rd), .B(reg_rr), .Q(div_result), .R(mod_result));
+    and_16bit and16 (.A(reg_rd), .B(reg_rr), .Y(and_result));
+    or_16bit  or16  (.A(reg_rd), .B(reg_rr), .Y(or_result));
+    xor_16bit xor16 (.A(reg_rd), .B(reg_rr), .Y(xor_result));
+    not_16bit not16 (.A(reg_rd), .Y(not_result));
+
+    adder_8bit add8 (.A(reg_rd[15:8]), .B(reg_rr[15:8]), .cin(1'b0), .sum(add8_result), .cout(cout_add8_hi));
+    adder_8bit adc8 (.A(reg_rd[15:8]), .B(reg_rr[15:8]), .cin(cin),  .sum(adc8_result), .cout(cout_adc8_hi));
+    subtractor_8bit sub8 (.A(reg_rd[15:8]), .B(reg_rr[15:8]), .S(sub8_result));
+    sbc_8bit sbc8 (.A(reg_rd[15:8]), .B(reg_rr[15:8]), .cin(cin), .S(sbc8_result));
+    multiplier_8bit mul8 (.A(reg_rd[15:8]), .B(reg_rr[15:8]), .Y(mul8_result));
+    divider_8bit    div8 (.A(reg_rd[15:8]), .B(reg_rr[15:8]), .Q(div8_result), .R());
+    modulo_8bit     mod8 (.A(reg_rd[15:8]), .B(reg_rr[15:8]), .R(mod8_result));
+    and_8bit and8 (.A(reg_rd[15:8]), .B(reg_rr[15:8]), .Y(and8_result));
+    or_8bit  or8  (.A(reg_rd[15:8]), .B(reg_rr[15:8]), .Y(or8_result));
+    xor_8bit xor8 (.A(reg_rd[15:8]), .B(reg_rr[15:8]), .Y(xor8_result));
+    not_8bit not8 (.A(reg_rd[15:8]), .Y(not8_result));
+
+    adder_8bit add8_lo (.A(reg_rd[7:0]), .B(reg_rr[7:0]), .cin(1'b0), .sum(add8_lo_result), .cout(cout_add8_lo));
+    adder_8bit adc8_lo (.A(reg_rd[7:0]), .B(reg_rr[7:0]), .cin(cin),  .sum(adc8_lo_result), .cout(cout_adc8_lo));
+    subtractor_8bit sub8_lo (.A(reg_rd[7:0]), .B(reg_rr[7:0]), .S(sub8_lo_result));
+    sbc_8bit sbc8_lo (.A(reg_rd[7:0]), .B(reg_rr[7:0]), .cin(cin), .S(sbc8_lo_result),.cout(cout_sbc8_lo));
+    multiplier_8bit mul8_lo (.A(reg_rd[7:0]), .B(reg_rr[7:0]), .Y(mul8_lo_result));
+    divider_8bit    div8_lo (.A(reg_rd[7:0]), .B(reg_rr[7:0]), .Q(div8_lo_result), .R());
+    modulo_8bit     mod8_lo (.A(reg_rd[7:0]), .B(reg_rr[7:0]), .R(mod8_lo_result));
+    and_8bit and8_lo (.A(reg_rd[7:0]), .B(reg_rr[7:0]), .Y(and8_lo_result));
+    or_8bit  or8_lo  (.A(reg_rd[7:0]), .B(reg_rr[7:0]), .Y(or8_lo_result));
+    xor_8bit xor8_lo (.A(reg_rd[7:0]), .B(reg_rr[7:0]), .Y(xor8_lo_result));
+    not_8bit not8_lo (.A(reg_rd[7:0]), .Y(not8_lo_result));
+
+    reg [15:0] result_lo;
+    reg [15:0] result_hi;
+    reg current_carry;
+
+    always @(*) begin
+        case (decoding_signal)
+            7'b0000000: begin result_lo = {8'b0, add8_lo_result}; result_hi = 16'b0; current_carry = cout_add8_lo; end
+            7'b0000001: begin result_lo = {8'b0, adc8_lo_result}; result_hi = 16'b0; current_carry = cout_adc8_lo; end
+            7'b0000010: begin result_lo = {8'b0, sub8_lo_result}; result_hi = 16'b0; end
+            7'b0000011: begin result_lo = {8'b0, sbc8_lo_result}; result_hi = 16'b0; current_carry = cout_sbc8_lo; end
+            7'b0000100: begin result_lo = {8'b0, mul8_lo_result}; result_hi = 16'b0; end
+            7'b0000101: begin result_lo = {8'b0, div8_lo_result}; result_hi = 16'b0; end 
+            7'b0000110: begin result_lo = {8'b0, mod8_lo_result}; result_hi = 16'b0; end
+            7'b0001000: begin result_lo = {8'b0, add8_result};    result_hi = 16'b0; current_carry = cout_add8_hi; end
+            7'b0001001: begin result_lo = {8'b0, adc8_result};    result_hi = 16'b0; current_carry = cout_adc8_hi; end
+            7'b0001010: begin result_lo = {8'b0, sub8_result};    result_hi = 16'b0; end
+            7'b0001011: begin result_lo = {8'b0, sbc8_result};    result_hi = 16'b0; current_carry = cout_sbc8_hi; end
+            7'b0001100: begin result_lo = {8'b0, mul8_result};    result_hi = 16'b0; end
+            7'b0001101: begin result_lo = {8'b0, div8_result};    result_hi = 16'b0; end
+            7'b0001110: begin result_lo = {8'b0, mod8_result};    result_hi = 16'b0; end
+            7'b0010000: begin result_lo = add_result;             result_hi = 16'b0; current_carry = cout_add; end
+            7'b0010001: begin result_lo = adc_result;             result_hi = 16'b0; current_carry = cout_adc; end
+            7'b0010010: begin result_lo = sub_result;             result_hi = 16'b0; current_carry = cout_sub; end
+            7'b0010011: begin result_lo = sbc_result;             result_hi = 16'b0; current_carry = cout_sbc; end
+            7'b0010100: begin result_lo = mul_result[15:0];       result_hi = mul_result[31:16]; end
+            7'b0010101: begin result_lo = div_result;             result_hi = 16'b0; end
+            7'b0010110: begin result_lo = mod_result;             result_hi = 16'b0; end
+            7'b0011000: begin result_lo = {8'b0, and8_lo_result}; result_hi = 16'b0; end
+            7'b0011001: begin result_lo = {8'b0, or8_lo_result};  result_hi = 16'b0; end
+            7'b0011010: begin result_lo = {8'b0, xor8_lo_result}; result_hi = 16'b0; end
+            7'b0011011: begin result_lo = {8'b0, not8_lo_result}; result_hi = 16'b0; end
+            7'b0100100: begin result_lo = and_result;             result_hi = 16'b0; end
+            7'b0100101: begin result_lo = or_result;              result_hi = 16'b0; end
+            7'b0100110: begin result_lo = xor_result;             result_hi = 16'b0; end
+            7'b0100111: begin result_lo = not_result;             result_hi = 16'b0; end
+            default: begin
+                result_lo = 16'b0;
+                result_hi = 16'b0;
+                current_carry = 1'b0;
+            end
+        endcase
+    end
+  assign alu_result0 = result_lo;
+  assign alu_result1 = result_hi;
+  assign mem_data    = result_hi;
+  assign mem_addr    = result_lo[11:0];
+
+    // ??? ?? (??? ??)
+// flag ?? ??
+reg h_reg, s_reg, v_reg, n_reg, z_reg, c_reg;
+reg [3:0] msb_index;
+reg [3:0] bit3_index;  // for H ?? ? ??
+
+
+
+
+
+always @(*) begin
+    // ???
+        h_reg = 1'b0;
+        s_reg = 1'b0;
+        v_reg = 1'b0;
+        n_reg = 1'b0;
+        z_reg = 1'b0;
+        c_reg = 1'b0;
+
+    case (decoding_signal)
+
+        // --- 8bit Low ?? ?? ---
+        7'b0000000: begin  // ADDBL
+            c_reg = cout_add8_lo; 
+            n_reg = add8_lo_result[7];
+            z_reg = (add8_lo_result == 8'b0);
+            v_reg = (reg_rd[7] & reg_rr[7] & ~add8_lo_result[7]) |
+                    (~reg_rd[7] & ~reg_rr[7] & add8_lo_result[7]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (reg_rd[3] & reg_rr[3]) |
+                    (reg_rd[3] & ~add8_lo_result[3]) |
+                    (reg_rr[3] & ~add8_lo_result[3]);
+        end
+
+        7'b0000001: begin  // ADCBL
+            c_reg = cout_adc8_lo;
+            n_reg = adc8_lo_result[7];
+            z_reg = (adc8_lo_result == 8'b0);
+            v_reg = (reg_rd[7] & reg_rr[7] & ~adc8_lo_result[7]) |
+                    (~reg_rd[7] & ~reg_rr[7] & adc8_lo_result[7]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (reg_rd[3] & reg_rr[3]) |
+                    (reg_rd[3] & ~adc8_lo_result[3]) |
+                    (reg_rr[3] & ~adc8_lo_result[3]);
+        end
+
+        7'b0000010: begin  // SUBBL
+            c_reg = cout_sub8_lo;
+            n_reg = sub8_lo_result[7];
+            z_reg = (sub8_lo_result == 8'b0);
+            v_reg = (reg_rd[7] & ~reg_rr[7] & ~sub8_lo_result[7]) |
+                    (~reg_rd[7] & reg_rr[7] & sub8_lo_result[7]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (~reg_rd[3] & reg_rr[3]) |
+                    (reg_rr[3] & sub8_lo_result[3]) |
+                    (sub8_lo_result[3] & ~reg_rd[3]);
+        end
+
+        7'b0000011: begin  // SUBCBL
+            c_reg = cout_sbc8_lo;
+            n_reg = sbc8_lo_result[7];
+            z_reg = (sbc8_lo_result == 8'b0);
+            v_reg = (reg_rd[7] & ~reg_rr[7] & ~sbc8_lo_result[7]) |
+                    (~reg_rd[7] & reg_rr[7] & sbc8_lo_result[7]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (~reg_rd[3] & reg_rr[3]) |
+                    (reg_rr[3] & sbc8_lo_result[3]) |
+                    (sbc8_lo_result[3] & ~reg_rd[3]);
+        end
+
+        // --- 8bit High ?? ?? ---
+        7'b0001000: begin  // ADDBH
+            c_reg = cout_add8_hi;
+            n_reg = add8_result[7];
+            z_reg = (add8_result == 8'b0);
+            v_reg = (reg_rd[15] & reg_rr[15] & ~add8_result[7]) |
+                    (~reg_rd[15] & ~reg_rr[15] & add8_result[7]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (reg_rd[11] & reg_rr[11]) |
+                    (reg_rd[11] & ~add8_result[3]) |
+                    (reg_rr[11] & ~add8_result[3]);
+        end
+
+        7'b0001001: begin  // ADCBH
+            c_reg = cout_adc8_hi;
+            n_reg = adc8_result[7];
+            z_reg = (adc8_result == 8'b0);
+            v_reg = (reg_rd[15] & reg_rr[15] & ~adc8_result[7]) |
+                    (~reg_rd[15] & ~reg_rr[15] & adc8_result[7]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (reg_rd[11] & reg_rr[11]) |
+                    (reg_rd[11] & ~adc8_result[3]) |
+                    (reg_rr[11] & ~adc8_result[3]);
+        end
+
+        7'b0001010: begin  // SUBBH
+            c_reg = cout_sub8_hi;
+            n_reg = sub8_result[7];
+            z_reg = (sub8_result == 8'b0);
+            v_reg = (reg_rd[15] & ~reg_rr[15] & ~sub8_result[7]) |
+                    (~reg_rd[15] & reg_rr[15] & sub8_result[7]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (~reg_rd[11] & reg_rr[11]) |
+                    (reg_rr[11] & sub8_result[3]) |
+                    (sub8_result[3] & ~reg_rd[11]);
+        end
+
+        7'b0001011: begin  // SUBCBH
+            c_reg = cout_sbc8_hi;
+            n_reg = sbc8_result[7];
+            z_reg = (sbc8_result == 8'b0);
+            v_reg = (reg_rd[15] & ~reg_rr[15] & ~sbc8_result[7]) |
+                    (~reg_rd[15] & reg_rr[15] & sbc8_result[7]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (~reg_rd[11] & reg_rr[11]) |
+                    (reg_rr[11] & sbc8_result[3]) |
+                    (sbc8_result[3] & ~reg_rd[11]);
+        end
+
+        // --- 16bit ?? ?? ---
+        7'b0010000: begin  // ADD
+            c_reg = cout_add;
+            n_reg = add_result[15];
+            z_reg = (add_result == 16'b0);
+            v_reg = (reg_rd[15] & reg_rr[15] & ~add_result[15]) |
+                    (~reg_rd[15] & ~reg_rr[15] & add_result[15]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (reg_rd[11] & reg_rr[11]) |
+                    (reg_rd[11] & ~add_result[11]) |
+                    (reg_rr[11] & ~add_result[11]);
+        end
+
+        7'b0010001: begin  // ADC
+            c_reg = cout_adc;
+            n_reg = adc_result[15];
+            z_reg = (adc_result == 16'b0);
+            v_reg = (reg_rd[15] & reg_rr[15] & ~adc_result[15]) |
+                    (~reg_rd[15] & ~reg_rr[15] & adc_result[15]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (reg_rd[11] & reg_rr[11]) |
+                    (reg_rd[11] & ~adc_result[11]) |
+                    (reg_rr[11] & ~adc_result[11]);
+        end
+
+        7'b0010010: begin  // SUB
+            c_reg = cout_sub;
+            n_reg = sub_result[15];
+            z_reg = (sub_result == 16'b0);
+            v_reg = (reg_rd[15] & ~reg_rr[15] & ~sub_result[15]) |
+                    (~reg_rd[15] & reg_rr[15] & sub_result[15]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (~reg_rd[11] & reg_rr[11]) |
+                    (reg_rr[11] & sub_result[11]) |
+                    (sub_result[11] & ~reg_rd[11]);
+        end
+
+        7'b0010011: begin  // SBC
+            c_reg = cout_sbc;
+            n_reg = sbc_result[15];
+            z_reg = (sbc_result == 16'b0);
+            v_reg = (reg_rd[15] & ~reg_rr[15] & ~sbc_result[15]) |
+                    (~reg_rd[15] & reg_rr[15] & sbc_result[15]);
+            s_reg = n_reg ^ v_reg;
+            h_reg = (~reg_rd[11] & reg_rr[11]) |
+                    (reg_rr[11] & sbc_result[11]) |
+                    (sbc_result[11] & ~reg_rd[11]);
+        end
+
+        // --- ?? ??: 8bit (Z, N? ??) ---
+        7'b0011000, 7'b0011001, 7'b0011010, 7'b0011011: begin
+            n_reg = result_lo[7];
+            z_reg = (result_lo[7:0] == 8'b0);
+            v_reg = 0;
+            s_reg = n_reg;
+            h_reg = 0;
+            c_reg = 0;
+        end
+
+        // --- ?? ??: 16bit (Z, N? ??) ---
+        7'b0100100, 7'b0100101, 7'b0100110, 7'b0100111: begin
+            n_reg = result_lo[15];
+            z_reg = (result_lo == 16'b0);
+            v_reg = 0;
+            s_reg = n_reg;
+            h_reg = 0;
+            c_reg = 0;
+        end
+
+        default: begin
+            h_reg = 0; s_reg = 0; v_reg = 0;
+            n_reg = 0; z_reg = 0; c_reg = 0;
+        end
+    endcase
+end
+
+assign alu_flag = {2'b00, h_reg, s_reg, v_reg, n_reg, z_reg, c_reg};
+
+
+    
+endmodule

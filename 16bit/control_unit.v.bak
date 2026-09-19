@@ -1,0 +1,404 @@
+module control_unit (
+    input clk,
+    input reset,
+    input [15:0] instr,
+
+    output reg [6:0] decoding_signal,
+    output reg [2:0] rd, rr,
+    output reg [2:0] mbit,
+    output reg [11:0] imm,
+    output reg [11:0] kbit,
+    output reg [3:0] nbit,
+    output reg [2:0] sbit,
+    output reg reg_wr,
+    output reg sreg_wr,
+    output reg [1:0] pc_wr,
+    output reg mem_wr,
+    output reg mem_rd,
+    output reg imm_sel,
+    output reg addr_sel,
+    output reg mem_reg_sel,
+    output reg exe_32
+);
+
+always @(posedge clk or posedge reset) begin
+    if (reset) begin
+        decoding_signal <= 7'b0000000;
+        rd            <= 3'b000;
+        rr            <= 3'b000;
+        nbit          <= 4'b0000;
+        mbit          <= 3'b000;
+	sbit          <= 3'b000;
+        imm           <= 12'b000000000000;
+        kbit          <= 12'b000000000000;
+        reg_wr        <= 0;
+        sreg_wr       <= 0;
+        pc_wr         <= 2'b00;
+        mem_wr        <= 0;
+        mem_rd        <= 0;
+        imm_sel       <= 0;
+        addr_sel      <= 0;
+        mem_reg_sel   <= 0;
+        exe_32        <= 0;
+    end else begin
+        // ?? ? (???)
+        decoding_signal <= 7'b0000000;
+        rd            <= 3'b000;
+        rr            <= 3'b000;
+        nbit          <= 4'b0000;
+        mbit          <= 3'b000;
+	sbit          <= 3'b000;
+        imm           <= 12'b000000000000;
+        kbit          <= 12'b000000000000;
+        reg_wr        <= 0;
+        sreg_wr       <= 0;
+        pc_wr         <= 2'b00;
+        mem_wr        <= 0;
+        mem_rd        <= 0;
+        imm_sel       <= 0;
+        addr_sel      <= 0;
+        mem_reg_sel   <= 0;
+        exe_32        <= 0;
+
+    if (instr[15:12] == 4'b0000) begin  // Arithmetic
+	reg_wr<=1;
+	sreg_wr<=1;
+        if (instr[11:8] == 4'b0000 && instr[7] == 1'b0) begin  // ADDBL
+            decoding_signal<=7'b0000000;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end 
+	else if (instr[11:8] == 4'b0001 && instr[7] == 1'b0) begin  // ADCBL
+            decoding_signal<=7'b0000001;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end 
+	else if (instr[11:8] == 4'b0010 && instr[7] == 1'b0) begin  // SUBBL
+            decoding_signal<=7'b0000010;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end 
+	else if (instr[11:8] == 4'b0011 && instr[7] == 1'b0) begin  // SUBCBL
+            decoding_signal<=7'b0000011;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+	end 
+	else if (instr[11:8] == 4'b0100 && instr[7] == 1'b0) begin // MULBL
+	    decoding_signal<=7'b0000100;
+	    rd<=instr[6:4];
+	    rr<=instr[2:0];
+	    exe_32<=1;
+	end 
+	else if (instr[11:8] == 4'b0110 && instr[7] == 1'b0) begin // DIVBL
+	    decoding_signal<=7'b0000101;
+	    rd<=instr[6:4];
+	    rr<=instr[2:0];
+	end 
+	else if (instr[11:8] == 4'b0111) begin // MODBL
+	    decoding_signal<=7'b0000110;
+	    rd<=instr[6:4];
+	    rr<=instr[2:0];
+        end 
+	else if (instr[11:8] == 4'b0000 && instr[7] == 1'b1) begin  // ADDBH
+            decoding_signal<=7'b0001000;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end 
+	else if (instr[11:8] == 4'b0001 && instr[7] == 1'b1) begin  // ADCBH
+            decoding_signal<=7'b0001001;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end 
+	else if (instr[11:8] == 4'b0010 && instr[7] == 1'b1) begin  // SUBBH
+            decoding_signal<=7'b0001010;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end 
+	else if (instr[11:8] == 4'b0011 && instr[7] == 1'b1) begin  // SUBCBH
+	    decoding_signal<=7'b0001011;
+	    rd<=instr[6:4];
+	    rr<=instr[2:0];
+	end 
+	else if (instr[11:8] == 4'b0100 && instr[7] == 1'b1) begin // MULBH
+	    decoding_signal<=7'b0001101;
+	    rd<=instr[6:4];
+	    rr<=instr[2:0];
+	    exe_32<=1;
+	end 
+	else if (instr[11:8] == 4'b0110 && instr[7] == 1'b1) begin // DIVBH
+	    decoding_signal<=7'b0001110;
+	    rd<=instr[6:4];
+	    rr<=instr[2:0];
+	end 
+	else if ((instr[11:8] == 4'b0111) && (instr[7] == 1'b0)) begin // MODBH
+	    decoding_signal<=7'b0001111;
+	    rd<=instr[6:4];
+	    rr<=instr[2:0];
+        end
+        end
+    else if (instr[15:12] == 4'b0001) begin //Logical
+	reg_wr<=1;
+	sreg_wr<=1;
+        if (instr[11:8] == 4'b0000) begin  // AND
+            decoding_signal<=7'b0011000;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end else if (instr[11:8] == 4'b0001) begin  // OR
+            decoding_signal<=7'b0011001;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end else if (instr[11:8] == 4'b0100) begin  // XOR
+            decoding_signal<=7'b0011010;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end else if (instr[11:8] == 4'b0110) begin  // NOT
+            decoding_signal<=7'b0011011;
+            rd<=instr[6:4];
+        end
+
+        else if (instr[11:8] == 4'b1000) begin  // AND (?? ??)
+            decoding_signal<=7'b0100100;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end 
+	else if (instr[11:8] == 4'b1001) begin  // OR
+            decoding_signal<=7'b0100101;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end 
+	else if (instr[11:8] == 4'b1100) begin  // XOR
+            decoding_signal<=7'b0100110;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end 
+	else if (instr[11:8] == 4'b1110) begin  // NOT
+            decoding_signal<=7'b0100111;
+            rd<=instr[6:4];
+	end 
+    	end
+    else if (instr[15:12] == 4'b0010) begin  //Compare
+	reg_wr<=0;
+	sreg_wr<=1;
+        // EQ
+        if (instr[11:8] == 4'b0000) begin
+            decoding_signal<=7'b0101000;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end
+        // LT
+        else if (instr[11:8] == 4'b0010) begin
+            decoding_signal<=7'b0101001;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end
+        // GT
+        else if (instr[11:8] == 4'b0100) begin
+            decoding_signal<=7'b0101010;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+	end
+     end
+    else if (instr[15:12] == 4'b0011) begin  //Bit Operation
+	reg_wr<=1;
+	sreg_wr<=1;
+        // BSETR
+        if (instr[11:8] == 4'b0000) begin
+            decoding_signal<=7'b0110000;
+            rd<=instr[6:4];
+            nbit<=instr[3:0];
+        end
+        // BCLRR
+        else if (instr[11:8] == 4'b0010) begin
+            decoding_signal<=7'b0110001;
+            rd<=instr[6:4];
+            nbit<=instr[3:0];
+        end
+        // BNOTR
+        else if (instr[11:8] == 4'b0100) begin
+            decoding_signal<=7'b0110010;
+            rd<=instr[6:4];
+            nbit<=instr[3:0];
+        end
+        // BSET
+        else if (instr[11:8] == 4'b0001) begin
+            decoding_signal<=7'b0110011;
+            sbit<=instr[6:4];
+            sreg_rd <= 1;
+        end
+        // BCLR
+        else if (instr[11:8] == 4'b0011) begin
+            decoding_signal<=7'b0110100;
+            sbit<=instr[6:4];
+	    sreg_rd <= 1;
+        end
+        // BAND
+        else if (instr[11:9] == 3'b100) begin
+            decoding_signal<=7'b0110101;
+            rd<=instr[5:3];
+            mbit<=instr[8:6];
+	    sreg_rd <= 1;
+        end
+        // BOR
+        else if (instr[11:9] == 3'b101) begin
+            decoding_signal<=7'b0110110;
+            rd<=instr[5:3];
+            mbit<=instr[8:6];
+	    sreg_rd <= 1;
+        end
+        // BXOR
+        else if (instr[11:9] == 3'b110) begin
+            decoding_signal<=7'b0110111;
+            rd<=instr[5:3];
+            mbit<=instr[8:6];
+	    sreg_rd <= 1;
+        end
+    end
+    else if (instr[15:12] == 4'b0100) begin  //Shift & Operation
+	reg_wr<=1;
+	if (instr[11:8] == 4'b0000) begin  // LSL
+            decoding_signal<=7'b0111000;
+            rd<=instr[6:4];
+        end 
+	else if (instr[11:8] == 4'b0001) begin  // LSR
+            decoding_signal<=7'b0111001;
+            rd<=instr[6:4];
+        end 
+	else if (instr[11:8] == 4'b0010) begin  // ROL
+            decoding_signal<=7'b0111010;
+            rd<=instr[6:4];
+        end 
+	else if (instr[11:8] == 4'b0011) begin  // ROR
+            decoding_signal<=7'b0111011;
+            rd<=instr[6:4];
+        end 
+	else if (instr[11:8] == 4'b0100) begin  // ASL
+            decoding_signal<=7'b0111100;
+            rd<=instr[6:4];
+        end 
+	else if (instr[11:8] == 4'b0101) begin  // ASR
+            decoding_signal<=7'b0111101;
+            rd<=instr[6:4];
+	end
+    end
+    else if (instr[15:12] == 4'b0101) begin  //Data Move & NOP
+	reg_wr<=1;
+	if (instr[11:8] == 4'b0000) begin  // MOV
+            decoding_signal<=7'b1000000;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+        end 
+	else if (instr[11:8] == 4'b0001) begin  // MOVW
+            decoding_signal<=7'b1000001;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+	    exe_32<=1;
+        end 
+	else if (instr[11:8] == 4'b0010) begin  // SWAP
+            decoding_signal<=7'b1000010;
+            rd<=instr[6:4];
+        end 
+	else if (instr[11:8] == 4'b0011) begin  // EXHG
+            decoding_signal<=7'b1000011;
+            rd<=instr[6:4];
+            rr<=instr[2:0];
+	end
+        end
+    else if (instr[15:10] == 6'b011010) begin  //MOVLI
+        decoding_signal<=7'b1000100;
+        imm<={4'b0000,instr[7:0]};
+	imm_sel <=1;
+	reg_wr  <=1;
+    end
+    else if (instr[15:10] == 6'b011011) begin  // MOVHI
+        decoding_signal<=7'b1000110;
+        imm<={4'b0000,instr[7:0]};
+	imm_sel<= 1;
+	reg_wr <= 1;
+    end
+    else if (instr[15:8] == 8'b01110000) begin // NOP
+	decoding_signal<=7'b1000111;
+	reg_wr<=0;
+    end
+    else if (instr[15:12] == 4'b1000) begin  // JMPR
+        decoding_signal<=7'b1001000;
+	kbit<=instr[11:0];
+	pc_wr<=2'b01;
+	imm_sel<=1;
+    end
+    else if (instr[15:12] == 4'b1001 && instr[11] == 0)begin  // JMPI
+        decoding_signal<=7'b1001001;
+        rd<=instr[11:9];
+        kbit<=instr[7:0];
+	pc_wr<=2'b10;
+	imm_sel<=1;
+	addr_sel<=1;
+    end
+    else if (instr[15:12] == 4'b1001 && instr[11:10] == 2'b11) begin  // BRBS
+        decoding_signal<=7'b1001010;
+        sbit<=instr[9:7];
+        rd<=instr[6:4];
+	pc_wr<=2'b01;
+	addr_sel<=1;
+    end
+    else if (instr[15:12] ==4'b1001 && instr[11:10] ==2'b10) begin  // BRBC
+        decoding_signal<=7'b1001011;
+        sbit<=instr[9:7];
+        rd<=instr[6:4];
+	pc_wr<=2'b01;
+	addr_sel<=1;
+    end
+
+    // Data Transfer
+    else if (instr[15:12] == 4'b1010) begin  // LDI
+        decoding_signal<=7'b1010000;
+        imm<={4'b0000,instr[11:4]};
+	reg_wr<=1;
+	mem_rd <=1;
+	imm_sel<=1;
+	mem_reg_sel<=1;
+	rr <=3'b000;
+    end
+    else if (instr[15:12] == 4'b1011 && instr[11] == 1'b0) begin  // LDR (type 1)
+        decoding_signal<=7'b1010001;
+        rd<=instr[10:8];
+        imm<={4'b0000,instr[7:0]};
+	reg_wr<=1;
+	mem_rd<=1;
+	addr_sel<=1;
+	mem_reg_sel<=1;
+
+    end
+    else if (instr[15:12] == 4'b1011 && instr[11] == 1'b1) begin  // LDR (type 2)
+        decoding_signal<=7'b1010010;
+        rd<=instr[10:8];
+        imm<={4'b0000,instr[7:0]};
+	reg_wr<=1;
+	mem_rd<=1;
+	addr_sel<=1;
+	mem_reg_sel<=1;
+    end
+    else if (instr[15:12] == 4'b1100) begin  // STI
+        decoding_signal<=7'b1010011;
+        imm<={4'b0000,instr[7:0]};
+	mem_wr<=1;
+	imm_sel<=1;
+	addr_sel<=1;
+	rr <= 3'b000;
+    end
+    else if (instr[15:12] == 4'b1101) begin  // STR (type 1)
+        decoding_signal<=7'b1010100;
+        rd<=instr[10:8];
+        imm<={4'b0000,instr[7:0]};
+	rr <= 3'b000;
+	mem_wr<=1;
+	addr_sel<=1;
+    end
+    else if (instr[15:12] == 4'b1110) begin  // STR (type 2)
+        decoding_signal<=7'b1010101;
+        rd<=instr[6:4];
+        rr<=instr[2:0];
+    end
+
+  end
+end
+endmodule

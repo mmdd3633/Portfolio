@@ -1,0 +1,94 @@
+`timescale 1ns / 1ps
+
+module alu_tb;
+
+    // ??
+    reg  [15:0] A, B;
+    reg  [6:0]  alu_op;
+    reg         cin;
+
+    // ??
+    wire [15:0] R0, R1;
+    wire [7:0]  alu_flag;
+
+    // dummy ??
+    wire [15:0] dummy_mem_data;
+    wire [11:0] dummy_mem_addr;
+
+    // DUT
+    alu uut (
+        .reg_rd          (A),
+        .reg_rr          (B),
+        .decoding_signal (alu_op),
+        .cin             (cin),
+        .alu_result0     (R0),
+        .alu_result1     (R1),
+        .mem_data        (dummy_mem_data),
+        .mem_addr        (dummy_mem_addr),
+        .alu_flag        (alu_flag)
+    );
+
+    // ??? ?? Task
+    task run_test;
+        input [15:0] in_A;
+        input [15:0] in_B;
+        input [6:0]  op;
+        input        carry_in;
+        begin
+            A      = in_A;
+            B      = in_B;
+            alu_op = op;
+            cin    = carry_in;
+            #10;  // ??? ?? (??? ?? ??)
+            $display("OP: %02d | A = %h | B = %h | Cin = %b || R0 = %h | R1 = %h | Flags [H S V N Z C] = %b",
+                     op, A, B, cin, R0, R1, alu_flag[5:0]);
+        end
+    endtask
+
+    initial begin
+        $display("=== ALU TEST START ===");
+
+        A = 16'h00F0;
+        B = 16'h0FF0;
+
+        #10;
+
+        // ?? ?? ???
+        run_test(A, B, 7'd0,  0);  // ADDBL
+        run_test(A, B, 7'd1,  1);  // ADCBL
+        run_test(A, B, 7'd2,  0);  // SUBBL
+        run_test(A, B, 7'd3,  1);  // SUBCBL
+        run_test(A, B, 7'd4,  0);  // MULBL
+        run_test(A, B, 7'd5,  0);  // DIVBL
+        run_test(A, B, 7'd6,  0);  // MODBL
+
+        run_test(A, B, 7'd8,  0);  // ADDBH
+        run_test(A, B, 7'd9,  1);  // ADCBH
+        run_test(A, B, 7'd10, 0);  // SUBBH
+        run_test(A, B, 7'd11, 1);  // SUBCBH
+        run_test(A, B, 7'd12, 0);  // MULBH
+        run_test(A, B, 7'd13, 0);  // DIVBH
+        run_test(A, B, 7'd14, 0);  // MODBH
+
+        run_test(A, B, 7'd16, 0);  // ADD
+        run_test(A, B, 7'd17, 1);  // ADC
+        run_test(A, B, 7'd18, 0);  // SUB
+        run_test(A, B, 7'd19, 1);  // SBC
+        run_test(A, B, 7'd20, 0);  // MUL
+        run_test(A, B, 7'd21, 0);  // DIV
+        run_test(A, B, 7'd22, 0);  // MOD
+
+        run_test(A, B, 7'd24, 0);  // AND 8bit
+        run_test(A, B, 7'd25, 0);  // OR 8bit
+        run_test(A, B, 7'd26, 0);  // XOR 8bit
+        run_test(A, B, 7'd27, 0);  // NOT 8bit
+
+        run_test(A, B, 7'd36, 0);  // AND 16bit
+        run_test(A, B, 7'd37, 0);  // OR 16bit
+        run_test(A, B, 7'd38, 0);  // XOR 16bit
+        run_test(A, B, 7'd39, 0);  // NOT 16bit
+
+        $display("=== ALU TEST END ===");
+        $finish;
+    end
+endmodule

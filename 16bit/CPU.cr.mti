@@ -1,0 +1,157 @@
+D:/modelsim/16bit/CPU_Top.v {1 {vlog -work work -stats=none D:/modelsim/16bit/CPU_Top.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module cpu_top
+
+Top level modules:
+	cpu_top
+
+} {} {}} D:/modelsim/16bit/InstructionMemory.v {1 {vlog -work work -stats=none D:/modelsim/16bit/InstructionMemory.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module InstructionMemory
+
+Top level modules:
+	InstructionMemory
+
+} {} {}} D:/modelsim/16bit/tb_CPU_top.v {1 {vlog -work work -stats=none D:/modelsim/16bit/tb_CPU_top.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_cpu_top
+
+Top level modules:
+	tb_cpu_top
+
+} {} {}} D:/modelsim/16bit/ALU_data_transfer.v {1 {vlog -work work -stats=none D:/modelsim/16bit/ALU_data_transfer.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ALU_data_transfer
+
+Top level modules:
+	ALU_data_transfer
+
+} {} {}} D:/modelsim/16bit/ALU_bit_operation.v {1 {vlog -work work -stats=none D:/modelsim/16bit/ALU_bit_operation.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module bitop_unit
+
+Top level modules:
+	bitop_unit
+
+} {} {}} D:/modelsim/16bit/control_unit.v {1 {vlog -work work -stats=none D:/modelsim/16bit/control_unit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module control_unit
+
+Top level modules:
+	control_unit
+
+} {} {}} D:/modelsim/16bit/ProgramCounter.v {1 {vlog -work work -stats=none D:/modelsim/16bit/ProgramCounter.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ProgramCounter
+
+Top level modules:
+	ProgramCounter
+
+} {} {}} D:/modelsim/16bit/alu_arith.v {1 {vlog -work work -stats=none D:/modelsim/16bit/alu_arith.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module alu_arithmetic
+
+Top level modules:
+	alu_arithmetic
+
+} {} {}} D:/modelsim/16bit/ALU_data_move.v {1 {vlog -work work -stats=none D:/modelsim/16bit/ALU_data_move.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module ALU_data_move
+
+Top level modules:
+	ALU_data_move
+
+} {} {}} D:/modelsim/16bit/Data_Memory.v {1 {vlog -work work -stats=none {D:\modelsim\16bit\Data_Memory.v}
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module data_memory
+
+Top level modules:
+	data_memory
+
+} {} {}} D:/modelsim/16bit/ALU_top.v {1 {vlog -work work -stats=none D:/modelsim/16bit/ALU_top.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module full_adder
+-- Compiling module not_8bit
+-- Compiling module not_16bit
+-- Compiling module adder_8bit
+-- Compiling module adder_16bit
+-- Compiling module carry_adder_32
+-- Compiling module subtractor_8bit
+-- Compiling module subtractor_16bit
+-- Compiling module sbc_8bit
+-- Compiling module sbc_16bit
+-- Compiling module and_8bit
+-- Compiling module and_16bit
+-- Compiling module or_8bit
+-- Compiling module or_16bit
+-- Compiling module xor_8bit
+-- Compiling module xor_16bit
+-- Compiling module multiplier_8bit
+-- Compiling module multiplier_16x16
+-- Compiling module modulo_8bit
+-- Compiling module modulo_16bit
+-- Compiling module compare_core
+-- Compiling module comparator_16bit
+-- Compiling module mux2to1_16bit
+-- Compiling module shift_left_1bit_gate
+-- Compiling module shift_left_1bit_gate_8bit
+-- Compiling module divider_8bit
+-- Compiling module divider_16bit
+-- Compiling module alu_arithmetic
+-- Compiling module alu_logic
+-- Compiling module bitop_unit
+-- Compiling module compare_unit
+-- Compiling module shift_rotate_unit
+-- Compiling module ALU_branch
+-- Compiling module ALU_top
+
+Top level modules:
+	and_8bit
+	and_16bit
+	or_8bit
+	or_16bit
+	xor_8bit
+	xor_16bit
+	modulo_16bit
+	shift_left_1bit_gate_8bit
+	ALU_top
+
+} {} {}} D:/modelsim/16bit/register_file.v {1 {vlog -work work -stats=none D:/modelsim/16bit/register_file.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module register_file
+
+Top level modules:
+	register_file
+
+} {} {}} D:/modelsim/16bit/tb_control.v {2 {vlog -work work -stats=none D:/modelsim/16bit/tb_control.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_control_unit
+** Warning: D:/modelsim/16bit/tb_control.v(50): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: D:/modelsim/16bit/tb_control.v(52): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: D:/modelsim/16bit/tb_control.v(56): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: D:/modelsim/16bit/tb_control.v(58): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: D:/modelsim/16bit/tb_control.v(62): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: D:/modelsim/16bit/tb_control.v(64): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: D:/modelsim/16bit/tb_control.v(74): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: D:/modelsim/16bit/tb_control.v(76): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: D:/modelsim/16bit/tb_control.v(80): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+** Warning: D:/modelsim/16bit/tb_control.v(82): (vlog-2600) [RDGN] - Redundant digits in numeric literal.
+
+Top level modules:
+	tb_control_unit
+
+} {} {}} D:/modelsim/16bit/tb_data_memory.v {1 {vlog -work work -stats=none D:/modelsim/16bit/tb_data_memory.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module tb_data_memory
+
+Top level modules:
+	tb_data_memory
+
+} {} {}} D:/modelsim/16bit/sreg_unit.v {1 {vlog -work work -stats=none D:/modelsim/16bit/sreg_unit.v
+Model Technology ModelSim - Intel FPGA Edition vlog 2020.1 Compiler 2020.02 Feb 28 2020
+-- Compiling module sreg_module
+
+Top level modules:
+	sreg_module
+
+} {} {}}

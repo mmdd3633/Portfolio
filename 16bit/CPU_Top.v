@@ -1,0 +1,118 @@
+module cpu_top (
+    input wire clk,
+    input wire reset,
+    input wire [7:0]  sreg_out,      // from sreg
+
+    output wire [15:0] alu_result0,
+    output wire [15:0] alu_result1,
+    output wire [7:0]  alu_flag,      // to sreg
+    output wire [1:0]  cmp_result,
+    output wire [15:0] pc_append,
+    output wire [15:0] mem_dataout
+);
+
+    // ?? control unit wires
+    wire [6:0] decoding_signal;
+    wire [2:0] rd, rr, mbit, sbit;
+    wire [11:0] imm, kbit;
+    wire [3:0]  nbit;
+    wire        reg_wr, sreg_wr, mem_wr, mem_rd;
+    wire [1:0]  pc_wr;
+    wire        imm_sel, addr_sel, mem_reg_sel, exe_32;
+    //Datamemory
+    wire [15:0] mem_data;
+    wire [11:0] mem_addr;
+    //Instrcution memory
+    wire [15:0] instr_code;
+    //PC
+    wire [15:0] pc;
+    //ALU
+    wire [15:0] reg_rd_data;
+    wire [15:0] reg_rr_data;
+
+
+
+    // ?? Control Unit
+    control_unit u_cu (
+        .clk(clk),
+        .reset(reset),
+        .instr(instr_code),
+        .decoding_signal(decoding_signal),
+        .rd(rd),
+        .rr(rr),
+        .mbit(mbit),
+        .imm(imm),
+        .kbit(kbit),
+        .nbit(nbit),
+        .sbit(sbit),
+        .reg_wr(reg_wr),
+        .sreg_wr(sreg_wr),
+        .pc_wr(pc_wr),
+        .mem_wr(mem_wr),
+        .mem_rd(mem_rd),
+        .imm_sel(imm_sel),
+        .addr_sel(addr_sel),
+        .mem_reg_sel(mem_reg_sel),
+        .exe_32(exe_32)
+    );
+
+    // ?? ALU
+    ALU_top u_alu (
+        .decoding_signal(decoding_signal),
+        .reg_rd(reg_rd_data),
+        .reg_rr(reg_rr_data),
+        .kbit(kbit),
+        .cin(sreg_out[0]),         // carry-in ?? (??: sreg[0] = C)
+        .sreg_we(sreg_wr),
+        .sreg_out(sreg_out),
+        .nbit(nbit),
+        .mbit(mbit),
+        .sbit(sbit),
+        .imm(imm),
+
+        .alu_result0(alu_result0),
+        .alu_result1(alu_result1),
+        .alu_flag(alu_flag),
+        .cmp_result(cmp_result),
+        .pc_append(pc_append),
+        .mem_data(mem_data),
+        .mem_addr(mem_addr)
+    );
+    
+     data_memory u_data_mem(
+ 	.clk(clk),
+	.mem_rd(mem_rd),               // from control_unit
+	.mem_wr(mem_wr),               // from control_unit
+	.mem_addr(mem_addr),           // from ALU
+	.mem_data(mem_data),           // from ALU
+	.mem_dataout(mem_dataout)
+    ); 
+	
+     InstructionMemory u_instr_memory(
+	.pc(pc),//input
+	.instr_code(instr_code)
+    );
+     ProgramCounter u_pc (
+    	.clk(clk),
+    	.reset(reset),
+   	.pc_wr(pc_wr),          // from control_unit
+    	.pc_append(pc_append),  // from ALU
+    	.pc(pc)                 // current PC value to InstructionMemory
+    );
+     register_file u_regfile (
+    	.clk(clk),
+    	.reset(reset),
+    	.alu_result0(alu_result0),
+    	.alu_result1(alu_result1),
+    	.exe_32(exe_32),
+    	.decoding_signal(decoding_signal),
+    	.rd(rd),
+    	.rr(rr),
+    	.reg_wr(reg_wr),
+    	.mem_data(mem_dataout),
+    	.mem_reg_sel(mem_reg_sel),
+    	.reg_rr(reg_rr_data),
+    	.reg_rd(reg_rd_data)
+);
+
+endmodule

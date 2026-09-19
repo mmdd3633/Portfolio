@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include "xparameters.h"
+#include "xgpio.h"
+#include "xil_printf.h"
+
+#define GPIO_DEVICE_ID  XPAR_AXI_GPIO_0_DEVICE_ID
+#define RGB_CH 1
+
+XGpio Gpio;
+
+int main() {
+    int status;
+    int r_val = 0, g_val = 0, b_val = 0;
+    u32 combined_rgb;
+
+    status = XGpio_Initialize(&Gpio, GPIO_DEVICE_ID);
+    if (status != XST_SUCCESS) return XST_FAILURE;
+    XGpio_SetDataDirection(&Gpio, RGB_CH, 0x0);
+
+    xil_printf("--- RGB Control Started ---\n\r");
+
+    while(1) {
+        // [수정 포인트] 사용자 입력 안내 후 입력을 기다림
+        xil_printf("\n\rInput R G B (0-255) : ");
+
+        // scanf 성공 여부를 체크하고 버퍼를 비워줌
+        if (scanf("%d %d %d", &r_val, &g_val, &b_val) != 3) {
+            // 숫자가 아닌 값이 들어왔을 때 버퍼를 비워버림
+            while (getchar() != '\n');
+            continue;
+        }
+
+        // 값 제한
+        if(r_val > 255) r_val = 255;
+        if(g_val > 255) g_val = 255;
+        if(b_val > 255) b_val = 255;
+
+        combined_rgb = ((u32)r_val << 16) | ((u32)g_val << 8) | (u32)b_val;
+        XGpio_DiscreteWrite(&Gpio, RGB_CH, combined_rgb);
+
+        xil_printf("Applied -> R:%d, G:%d, B:%d\n\r", r_val, g_val, b_val);
+
+        // [중요] 한 번 입력받은 후 버퍼에 남은 엔터 등을 청소
+        while (getchar() != '\n');
+    }
+    return 0;
+}

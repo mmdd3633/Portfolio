@@ -1,0 +1,10 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../week10.gen/sources_1/bd/week10/ipshared/ec67/hdl" --include "../../../../week10.gen/sources_1/bd/week10/ipshared/5765/hdl" --include "C:/Xilinx/Vivado/2022.1/data/xilinx_vip/include" \
+"../../../../week10.srcs/sources_1/new/apb_led.v" \
+"../../../../week10.srcs/sim_1/new/tb_apb_test.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

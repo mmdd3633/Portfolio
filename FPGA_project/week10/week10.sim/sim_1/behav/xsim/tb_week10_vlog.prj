@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../../week5/week5.srcs/sources_1/new/seg_decoder.v" \
+"../../../../week10.srcs/sources_1/new/week10.v" \
+"../../../../week10.srcs/sim_1/new/week10_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

@@ -1,0 +1,28 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Wed Oct 22 16:18:31 2025
+# Process ID: 26108
+# Current directory: C:/Tukorea/FPGA_project/week8
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent6840 C:\Tukorea\FPGA_project\week8\week8.xpr
+# Log file: C:/Tukorea/FPGA_project/week8/vivado.log
+# Journal file: C:/Tukorea/FPGA_project/week8\vivado.jou
+# Running On: BOOK-PI4T4K8H7V, OS: Windows, CPU Frequency: 3302 MHz, CPU Physical cores: 8, Host memory: 33834 MB
+#-----------------------------------------------------------
+start_guiopen_project C:/Tukorea/FPGA_project/week8/week8.xpr
+
+update_compile_order -fileset sources_1
+open_hw_manager
+connect_hw_server -allow_non_jtag
+open_hw_target
+set_property PROGRAM.FILE {C:/Tukorea/FPGA_project/week8/week8.runs/impl_1/week8.bit} [get_hw_devices xc7a100t_0]
+current_hw_device [get_hw_devices xc7a100t_0]
+refresh_hw_device -update_hw_probes false [lindex [get_hw_devices xc7a100t_0] 0]
+set_property PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property FULL_PROBES.FILE {} [get_hw_devices xc7a100t_0]
+set_property PROGRAM.FILE {C:/Tukorea/FPGA_project/week8/week8.runs/impl_1/week8.bit} [get_hw_devices xc7a100t_0]
+program_hw_devices [get_hw_devices xc7a100t_0]
+refresh_hw_device [lindex [get_hw_devices xc7a100t_0] 0]
+close_hw_manager
+reorder_files -fileset constrs_1 -after C:/Tukorea/FPGA_project/week8/week8.srcs/constrs_1/new/week8.xdc C:/Tukorea/FPGA_project/week8/week8.srcs/constrs_1/new/week8.xdc

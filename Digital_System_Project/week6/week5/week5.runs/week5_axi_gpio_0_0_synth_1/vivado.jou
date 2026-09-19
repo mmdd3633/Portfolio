@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Fri Apr  3 15:56:51 2026
+# Process ID: 17168
+# Current directory: C:/Tukorea/Digital_System_Project/week5/week5.runs/week5_axi_gpio_0_0_synth_1
+# Command line: vivado.exe -log week5_axi_gpio_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source week5_axi_gpio_0_0.tcl
+# Log file: C:/Tukorea/Digital_System_Project/week5/week5.runs/week5_axi_gpio_0_0_synth_1/week5_axi_gpio_0_0.vds
+# Journal file: C:/Tukorea/Digital_System_Project/week5/week5.runs/week5_axi_gpio_0_0_synth_1\vivado.jou
+# Running On: BOOK-PI4T4K8H7V, OS: Windows, CPU Frequency: 3302 MHz, CPU Physical cores: 8, Host memory: 33834 MB
+#-----------------------------------------------------------
+source week5_axi_gpio_0_0.tcl -notrace

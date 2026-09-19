@@ -1,0 +1,43 @@
+#include <stdio.h>
+#include "xparameters.h"
+#include "xgpio.h"
+#include "xil_printf.h"
+
+// Vivado에서 설정한 주소 ID와 채널
+#define GPIO_DEVICE_ID  XPAR_AXI_GPIO_0_DEVICE_ID
+#define RGB_CH 1
+
+XGpio Gpio;
+
+int main() {
+    int r_val = 0;
+    u32 combined_rgb;
+
+    // 1. GPIO 초기화 및 방향 설정
+    if (XGpio_Initialize(&Gpio, GPIO_DEVICE_ID) != XST_SUCCESS) return XST_FAILURE;
+    XGpio_SetDataDirection(&Gpio, RGB_CH, 0x0); // 출력 모드
+
+    xil_printf("--- LD10 Red Control Ready ---\r\n");
+
+    while(1) {
+        xil_printf("Input Red (0-255): ");
+
+        // 2. 숫자 하나만 입력받음
+        if (scanf("%d", &r_val) == 1) {
+            // 범위 제한
+            if(r_val > 255) r_val = 255;
+            if(r_val < 0) r_val = 0;
+
+            // 3. 비트 정렬 (Red: [23:16] 비트 가정)
+            combined_rgb = ((u32)r_val << 16);
+
+            // 4. 데이터 전송
+            XGpio_DiscreteWrite(&Gpio, RGB_CH, combined_rgb);
+            xil_printf("Applied: %d\r\n", r_val);
+        }
+
+        // 5. 입력 버퍼에 남은 엔터(\n) 제거 (무한루프 방지)
+        getchar();
+    }
+    return 0;
+}

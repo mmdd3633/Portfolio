@@ -1,0 +1,133 @@
+#include "xparameters.h"
+#include "xgpio.h"
+#include "sleep.h"
+#include "xil_printf.h"
+
+// 채널은 기본적으로 1을 사용한다.
+#define LED_CHANNEL 1
+#define BTN_CHANNEL 1
+#define SW_CHANNEL  1
+
+// xparameters.h에 정의된 Device ID를 매핑한다.
+#define GPIO_LED_ID XPAR_AXI_GPIO_0_DEVICE_ID
+#define GPIO_BTN_ID XPAR_AXI_GPIO_1_DEVICE_ID
+#define GPIO_SW_ID  XPAR_AXI_GPIO_2_DEVICE_ID
+
+// GPIO 인스턴스 선언
+XGpio Gpio_Led, Gpio_Btn, Gpio_Sw;
+
+int main() {
+    int Status;
+
+    // 1. GPIO 초기화
+    Status = XGpio_Initialize(&Gpio_Led, GPIO_LED_ID);
+    if (Status != XST_SUCCESS) { xil_printf("LED GPIO Init Failed\r\n"); return XST_FAILURE; }
+
+    Status = XGpio_Initialize(&Gpio_Btn, GPIO_BTN_ID);
+    if (Status != XST_SUCCESS) { xil_printf("BTN GPIO Init Failed\r\n"); return XST_FAILURE; }
+
+    Status = XGpio_Initialize(&Gpio_Sw, GPIO_SW_ID);
+    if (Status != XST_SUCCESS) { xil_printf("SW GPIO Init Failed\r\n"); return XST_FAILURE; }
+
+    // 2. GPIO 입출력 방향 설정 (0: Output, 1: Input)
+    XGpio_SetDataDirection(&Gpio_Led, LED_CHANNEL, 0x0000); // LED는 모두 출력
+    XGpio_SetDataDirection(&Gpio_Btn, BTN_CHANNEL, 0xFFFF); // Button은 모두 입력
+    XGpio_SetDataDirection(&Gpio_Sw, SW_CHANNEL, 0xFFFF);  // Switch는 모두 입력
+
+    xil_printf("디지털 시스템 설계: 10단계 속도 제어 LED 패턴 실습 시작\r\n");
+
+    // 제어 변수 초기화 (속도 단계를 10단계로 확장)
+    int speed_level = 5;       // 초기 속도 단계 (중간 속도인 5단계로 시작)
+    const int max_speed = 10;  // 최대 속도 10단계
+    const int min_speed = 1;   // 최소 속도 1단계
+    int delay_ms = 300;        // 초기 딜레이
+
+    int step = 0;              // 패턴의 현재 단계를 나타내는 카운터
+    u32 led_out = 0;           // LED에 출력할 값
+    u32 prev_btn = 0;          // 이전 버튼 상태 (엣지 검출용)
+    int mod_step = 0;          // 각 패턴별 주기 계산용 변수
+
+    while (1) {
+        // 3. 스위치 및 버튼 입력 읽기 (필요한 하위 2비트만 마스킹)
+        u32 sw_val = XGpio_DiscreteRead(&Gpio_Sw, SW_CHANNEL) & 0x03;
+        u32 btn_val = XGpio_DiscreteRead(&Gpio_Btn, BTN_CHANNEL) & 0x03;
+
+        // 버튼 엣지 검출 (안 눌려있다가 눌리는 순간만 1로 인식)
+        u32 btn_pressed = btn_val & ~prev_btn;
+        prev_btn = btn_val;
+
+        // 4. 속도 제어 로직 (1단계 ~ 10단계)
+        if (btn_pressed & 0x01) { // 버튼 0 입력: 속도 감소 (느리게)
+            if (speed_level > min_speed) speed_level--;
+            xil_printf("Speed Down: Level %d\r\n", speed_level);
+        }
+        if (btn_pressed & 0x02) { // 버튼 1 입력: 속도 증가 (빠르게)
+            if (speed_level < max_speed) speed_level++;
+            xil_printf("Speed Up: Level %d\r\n", speed_level);
+        }
+
+        // 속도 레벨에 따른 딜레이 시간 계산
+        // Level 1: 500ms (가장 느림) ~ Level 10: 50ms (가장 빠름)
+        delay_ms = 550 - (speed_level * 50);
+
+        // 5. 스위치 입력에 따른 4가지 LED 패턴 생성 (10개 LED 사용)
+        switch(sw_val) {
+            case 0:
+                // 패턴 0: 좌우 왕복 이동 (Ping-Pong)
+                mod_step = step % 18;
+                if (mod_step < 10) {
+                    led_out = 1 << mod_step;
+                } else {
+                    led_out = 1 << (18 - mod_step);
+                }
+                break;
+
+            case 1:
+                // 패턴 1: 중앙에서 양끝으로 퍼지기 (Inside-Out)
+                mod_step = step % 5;
+                led_out = (1 << (4 - mod_step)) | (1 << (5 + mod_step));
+                break;
+
+            case 2:
+                // 패턴 2: 게이지 차오르기 (Bar Graph Fill)
+                mod_step = step % 11;
+                led_out = (1 << mod_step) - 1;
+                break;
+
+            case 3:
+                // 패턴 3: 2개의 LED가 짝지어 회전하기 (Moving Pairs)
+                mod_step = step % 10;
+                led_out = (0x03 << mod_step) & 0x3FF;
+                if (mod_step == 9) led_out |= 0x001;
+                break;
+        }
+
+        // LED 출력 적용
+        XGpio_DiscreteWrite(&Gpio_Led, LED_CHANNEL, led_out);
+
+        // 6. 응답성 높은 딜레이 (Responsive Delay)
+        // 10ms 단위로 대기하며 입력을 폴링하므로, 속도가 느린 1단계(500ms)에서도
+        // 버튼을 누르는 즉시 루프를 탈출하여 다음 패턴 속도로 넘어간다.
+        for (int i = 0; i < delay_ms; i += 10) {
+            btn_val = XGpio_DiscreteRead(&Gpio_Btn, BTN_CHANNEL) & 0x03;
+            btn_pressed = btn_val & ~prev_btn;
+            prev_btn = btn_val;
+
+            if (btn_pressed & 0x01) {
+                if (speed_level > min_speed) speed_level--;
+                xil_printf("Speed Down: Level %d\r\n", speed_level);
+                break;
+            }
+            if (btn_pressed & 0x02) {
+                if (speed_level < max_speed) speed_level++;
+                xil_printf("Speed Up: Level %d\r\n", speed_level);
+                break;
+            }
+            usleep(10000); // 10ms 대기
+        }
+
+        step++; // 패턴 단계 증가
+    }
+
+    return 0;
+}

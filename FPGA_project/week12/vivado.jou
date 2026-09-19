@@ -1,0 +1,15 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Wed Nov 26 18:01:55 2025
+# Process ID: 27760
+# Current directory: C:/Tukorea/FPGA_project/week12
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent21816 C:\Tukorea\FPGA_project\week12\week12.xpr
+# Log file: C:/Tukorea/FPGA_project/week12/vivado.log
+# Journal file: C:/Tukorea/FPGA_project/week12\vivado.jou
+# Running On: BOOK-PI4T4K8H7V, OS: Windows, CPU Frequency: 3302 MHz, CPU Physical cores: 8, Host memory: 33834 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Tukorea/FPGA_project/week12/week12.xpr
+update_compile_order -fileset sources_1

@@ -1,0 +1,147 @@
+/******************************************************************************
+*
+* Copyright (C) 2009 - 2014 Xilinx, Inc.  All rights reserved.
+*
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+*
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+*
+* Use of the Software is limited solely to applications:
+* (a) running on a Xilinx device, or
+* (b) that interact with a Xilinx device through a bus or interconnect.
+*
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+* XILINX  BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+* WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF
+* OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+* SOFTWARE.
+*
+* Except as contained in this notice, the name of the Xilinx shall not be used
+* in advertising or otherwise to promote the sale, use or other dealings in
+* this Software without prior written authorization from Xilinx.
+*
+******************************************************************************/
+
+/*
+ * helloworld.c: simple test application
+ *
+ * This application configures UART 16550 to baud rate 9600.
+ * PS7 UART (Zynq) is not initialized by this application, since
+ * bootrom/bsp configures it to baud rate 115200
+ *
+ * ------------------------------------------------
+ * | UART TYPE   BAUD RATE                        |
+ * ------------------------------------------------
+ *   uartns550   9600
+ *   uartlite    Configurable only in HW design
+ *   ps7_uart    115200 (configured by bootrom/bsp) -> baud rate
+ */
+//
+//#include <stdio.h>
+//#include "platform.h"
+//#include "xil_printf.h"
+//
+//
+//int main()
+//{
+//    init_platform();
+//
+//    print("Zynq : Hello World\n\r");
+////    print("Successfully ran Hello World application");
+//    cleanup_platform();
+//    return 0;
+//}
+
+/******************************************************************************
+ * RGB LED (LED12) 제어 실습 코드
+ * 대상 칩: Zynq-7000S (xc7z007s)
+ * 설명: AXI GPIO를 통해 빨강(Red), 녹색(Green), 파랑(Blue) LED를 1초 간격으로 점멸합니다.
+ ******************************************************************************/
+
+#include "xparameters.h"  // Vivado 하드웨어 정보를 Vitis로 가져오는 핵심 헤더 (메모리 맵 주소 등)
+#include "xgpio.h"        // Xilinx AXI GPIO 제어를 위한 전용 API 헤더
+#include "xil_printf.h"   // 시리얼 터미널에 메시지를 출력하기 위한 Xilinx 전용 printf 헤더
+#include "sleep.h"        // sleep(), usleep() 등 딜레이 함수를 사용하기 위한 헤더
+
+/* * 하드웨어 파라미터 정의
+ * xparameters.h 파일 안에 정의된 AXI GPIO의 Device ID를 가져옵니다.
+ * 만약 Block Design에서 GPIO 이름을 다르게 주셨다면 XPAR_GPIO_0_DEVICE_ID 부분이 다를 수 있습니다.
+ */
+#define GPIO_DEVICE_ID  XPAR_GPIO_0_DEVICE_ID
+#define LED_CHANNEL     1  // AXI GPIO는 기본적으로 채널 1을 사용합니다.
+
+/* * RGB LED 색상별 비트 마스크 정의 (3비트 사용 가정)
+ * Vivado XDC 파일에서 핀을 어떻게 배열했는지에 따라 값이 달라질 수 있습니다.
+ * 보편적으로 [0]번 비트가 Red, [1]번 비트가 Green, [2]번 비트가 Blue에 연결됩니다.
+ */
+#define LED_OFF   0x00  // 000 (2진수) - 모두 꺼짐
+#define LED_RED   0x01  // 001 (2진수) - 빨강 켜짐
+#define LED_GREEN 0x02  // 010 (2진수) - 녹색 켜짐
+#define LED_BLUE  0x04  // 100 (2진수) - 파랑 켜짐
+
+// AXI GPIO 하드웨어를 제어하기 위한 인스턴스(객체) 구조체 선언
+XGpio Gpio_Inst;
+
+int main(void) {
+    int Status;
+
+    xil_printf("--- RGB LED 제어 프로그램을 시작합니다 ---\r\n");
+
+    /* * 1단계: AXI GPIO 하드웨어 초기화
+     * 프로세서가 해당 GPIO 장치와 통신할 수 있도록 설정하는 과정입니다.
+     */
+    Status = XGpio_Initialize(&Gpio_Inst, GPIO_DEVICE_ID);
+    if (Status != XST_SUCCESS) {
+        xil_printf("오류: GPIO 초기화에 실패했습니다!\r\n");
+        return XST_FAILURE;
+    }
+    xil_printf("GPIO 초기화 성공.\r\n");
+
+    /* * 2단계: GPIO 핀 방향(Direction) 설정
+     * LED를 제어하기 위해서는 핀을 입력(Input)이 아닌 출력(Output)으로 설정해야 합니다.
+     * 두 번째 인자는 채널(1), 세 번째 인자는 방향 마스크입니다.
+     * 마스크 비트가 0이면 출력(Output), 1이면 입력(Input)을 의미합니다.
+     * 0x00(모든 비트 0)을 입력하여 모든 핀을 출력 모드로 설정합니다.
+     */
+    XGpio_SetDataDirection(&Gpio_Inst, LED_CHANNEL, 0x00);
+
+    /* * 3단계: 무한 루프를 통한 LED 색상 제어
+     * 빨강 -> 녹색 -> 파랑 순서로 무한히 반복하여 점멸합니다.
+     */
+    while (1) {
+        // 1. 빨강색 LED 켜기
+        xil_printf("LED 색상: 빨강(Red)\r\n");
+        XGpio_DiscreteWrite(&Gpio_Inst, LED_CHANNEL, LED_RED);
+        sleep(1); // 1초 대기 (1000ms)
+
+        // 2. 녹색색 LED 켜기
+        xil_printf("LED 색상: 녹색(Green)\r\n");
+        XGpio_DiscreteWrite(&Gpio_Inst, LED_CHANNEL, LED_GREEN);
+        sleep(1);
+
+        // 3. 파란색 LED 켜기
+        xil_printf("LED 색상: 파랑(Blue)\r\n");
+        XGpio_DiscreteWrite(&Gpio_Inst, LED_CHANNEL, LED_BLUE);
+        sleep(1);
+
+        // 4. (보너스 실습) 세 가지 색을 모두 켜서 흰색 만들기
+        xil_printf("LED 색상: 흰색(Red+Green+Blue)\r\n");
+        XGpio_DiscreteWrite(&Gpio_Inst, LED_CHANNEL, LED_RED | LED_GREEN | LED_BLUE);
+        sleep(1);
+
+        // 5. LED 모두 끄기
+        xil_printf("LED 색상: 꺼짐\r\n\n");
+        XGpio_DiscreteWrite(&Gpio_Inst, LED_CHANNEL, LED_OFF);
+        sleep(1);
+    }
+
+    return XST_SUCCESS; // 정상 종료 (무한 루프라 실제 도달하지는 않음)
+}

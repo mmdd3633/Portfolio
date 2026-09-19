@@ -1,0 +1,17 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../week12.srcs/sources_1/new/btn_deb_posedge.v" \
+"../../../../week12.srcs/sources_1/new/clk_div_10ms.v" \
+"../../../../week12.srcs/sources_1/new/display_pos_ctrl.v" \
+"../../../../week12.srcs/sources_1/new/led_runner.v" \
+"../../../../week12.srcs/sources_1/new/seg_driver.v" \
+"../../../../week12.srcs/sources_1/new/stopwatch_counter.v" \
+"../../../../week12.srcs/sources_1/new/stopwatch_ctrl.v" \
+"../../../../week12.srcs/sources_1/new/top_stopwatch.v" \
+"../../../../week12.srcs/sim_1/new/tb_top_stopwatch.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

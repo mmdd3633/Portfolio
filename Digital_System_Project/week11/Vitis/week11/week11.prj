@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="week11" location="C:/Tukorea/Digital_System_Project/week11/Vitis/week11" platform="C:/Tukorea/Digital_System_Project/week11/Vitis/Stopwatch_Top/export/Stopwatch_Top/Stopwatch_Top.xpfm" platformUID="xilinx:blackboard_d::0.0(custom)" systemProject="week11_system" sysConfig="Stopwatch_Top" runtime="cpp" cpu="standalone_ps7_cortexa9_0" cpuInstance="ps7_cortexa9_0" os="standalone" mssSignature="50f7a1fa27c0934a6659adef3a138031">
+  <configuration name="Debug" id="xilinx.gnu.armv7.exe.debug.1475052249">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+    <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <configuration name="Release" id="xilinx.gnu.armv7.exe.release.1941701386" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <template appTemplateName="empty_application"/>
+</sdkproject:SdkProject>

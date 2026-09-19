@@ -1,0 +1,10 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../week5.srcs/sources_1/new/PWM_gen_8bit.v" \
+"../../../../week5.srcs/sim_1/new/tb_PWM_gen_8bit.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

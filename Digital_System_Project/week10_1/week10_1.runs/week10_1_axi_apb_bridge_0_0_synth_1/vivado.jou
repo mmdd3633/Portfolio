@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Fri May 15 15:30:09 2026
+# Process ID: 9240
+# Current directory: C:/Tukorea/Digital_System_Project/week10_1/week10_1.runs/week10_1_axi_apb_bridge_0_0_synth_1
+# Command line: vivado.exe -log week10_1_axi_apb_bridge_0_0.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source week10_1_axi_apb_bridge_0_0.tcl
+# Log file: C:/Tukorea/Digital_System_Project/week10_1/week10_1.runs/week10_1_axi_apb_bridge_0_0_synth_1/week10_1_axi_apb_bridge_0_0.vds
+# Journal file: C:/Tukorea/Digital_System_Project/week10_1/week10_1.runs/week10_1_axi_apb_bridge_0_0_synth_1\vivado.jou
+# Running On: BOOK-PI4T4K8H7V, OS: Windows, CPU Frequency: 3302 MHz, CPU Physical cores: 8, Host memory: 33834 MB
+#-----------------------------------------------------------
+source week10_1_axi_apb_bridge_0_0.tcl -notrace

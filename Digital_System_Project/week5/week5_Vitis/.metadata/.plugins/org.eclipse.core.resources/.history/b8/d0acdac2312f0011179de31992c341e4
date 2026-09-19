@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <stdlib.h>    // atoi 함수 사용을 위해 필요
+#include "xparameters.h"
+#include "xgpio.h"
+#include "xil_printf.h"
+
+// 1. 하드웨어 ID 설정 (Vivado의 Address Editor와 일치해야 함)
+#define GPIO_DEVICE_ID  XPAR_AXI_GPIO_0_DEVICE_ID
+#define RGB_CH 1        // IP 설정에서 채널 1을 사용한다고 가정
+
+XGpio Gpio;
+
+int main() {
+    int status;
+    char input_buf[32]; // TeraTerm 입력을 담을 버퍼
+    int r_val = 0;
+    u32 combined_data;
+
+    // [단계 1] AXI GPIO 초기화
+    status = XGpio_Initialize(&Gpio, GPIO_DEVICE_ID);
+    if (status != XST_SUCCESS) {
+        xil_printf("GPIO 초기화 실패! 하드웨어 연결을 확인하세요.\r\n");
+        return XST_FAILURE;
+    }
+
+    // [단계 2] GPIO 방향 설정 (모두 출력: 0)
+    XGpio_SetDataDirection(&Gpio, RGB_CH, 0x0);
+
+    xil_printf("\r\n******************************************\r\n");
+    xil_printf("   Blackboard LD10 Red LED Control System  \r\n");
+    xil_printf("   입력 범위: 0 (꺼짐) ~ 255 (최대 밝기)      \r\n");
+    xil_printf("******************************************\r\n");
+
+    while(1) {
+        xil_printf("\r\n[INPUT] Red Brightness: ");
+
+        // [단계 3] fgets로 한 줄을 통째로 입력받음 (엔터 입력 시까지 대기)
+        if (fgets(input_buf, sizeof(input_buf), stdin) != NULL) {
+
+            // [단계 4] 문자열을 정수로 변환
+            r_val = atoi(input_buf);
+
+            // [단계 5] 값 제한 (0~255 사이로 고정)
+            if(r_val > 255) r_val = 255;
+            if(r_val < 0) r_val = 0;
+
+            // [단계 7] AXI GPIO 레지스터에 데이터 쓰기
+            XGpio_DiscreteWrite(&Gpio, RGB_CH, combined_data);
+
+            xil_printf(">> 적용된 값: %d (데이터: 0x%08X)\r\n", r_val, combined_data);
+        }
+    }
+
+    return 0;
+}

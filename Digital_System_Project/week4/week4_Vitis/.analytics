@@ -1,0 +1,20 @@
+timestamp=[2026-03-27 13:52:53], mode=WORKBENCH_START, duration=0:00:06.425, duration_ms=6425, data={}
+timestamp=[2026-03-27 13:52:54], mode=WORKBENCH_UI_INIT, duration=0:00:00.456, duration_ms=456, data={editors_count=0, platform_editors_count=0, projects_count=0, platform_projects_count=0, active_platform_editor=false, projects=}
+timestamp=[2026-03-27 13:52:55], mode=PLATFORM_REPOSITORY_INIT, duration=0:00:00.198, duration_ms=198, data={}
+timestamp=[2026-03-27 13:53:41], mode=APP_CREATION, duration=0:00:14.800, duration_ms=14800, data={name=week4, project_type=sdk, os=standalone, processor=ps7_cortexa9, runtime=cpp, platform=GPIO3_wrapper, application_type=application}
+timestamp=[2026-03-27 13:56:32], mode=PLATFORM_GENERATION, duration=0:00:23.204, duration_ms=23204, data={name=GPIO3_wrapper}
+timestamp=[2026-03-27 13:56:34], mode=BUILD, duration=0:00:01.896, duration_ms=1896, data={name=week4, configuration=Debug, clean_build=false}
+timestamp=[2026-03-27 13:56:42], mode=BUILD, duration=0:00:07.375, duration_ms=7375, data={name=week4_system, configuration=Debug, clean_build=false}
+timestamp=[2026-03-27 14:05:52], mode=BUILD, duration=0:00:01.353, duration_ms=1353, data={name=week4, configuration=Debug, clean_build=false}
+timestamp=[2026-03-27 14:08:38], mode=BUILD, duration=0:00:01.333, duration_ms=1333, data={name=week4, configuration=Debug, clean_build=false}
+timestamp=[2026-03-27 14:12:44], mode=BUILD, duration=0:00:01.196, duration_ms=1196, data={name=week4, configuration=Debug, clean_build=false}
+timestamp=[2026-03-27 14:13:22], mode=PLATFORM_GENERATION, duration=0:00:06.411, duration_ms=6411, data={name=GPIO3_wrapper}
+timestamp=[2026-03-27 14:13:22], mode=BUILD, duration=0:00:00.186, duration_ms=186, data={name=week4, configuration=Debug, clean_build=true}
+timestamp=[2026-03-27 14:13:40], mode=PLATFORM_GENERATION, duration=0:00:18.212, duration_ms=18212, data={name=GPIO3_wrapper}
+timestamp=[2026-03-27 14:13:42], mode=BUILD, duration=0:00:01.153, duration_ms=1153, data={name=week4, configuration=Debug, clean_build=false}
+timestamp=[2026-03-27 14:23:15], mode=PLATFORM_GENERATION, duration=0:00:06.154, duration_ms=6154, data={name=GPIO3_wrapper}
+timestamp=[2026-03-27 14:23:15], mode=BUILD, duration=0:00:00.210, duration_ms=210, data={name=week4, configuration=Debug, clean_build=true}
+timestamp=[2026-03-27 14:23:33], mode=PLATFORM_GENERATION, duration=0:00:17.787, duration_ms=17787, data={name=GPIO3_wrapper}
+timestamp=[2026-03-27 14:23:34], mode=BUILD, duration=0:00:01.082, duration_ms=1082, data={name=week4, configuration=Debug, clean_build=false}
+timestamp=[2026-03-27 14:34:38], mode=BUILD, duration=0:00:01.386, duration_ms=1386, data={name=week4, configuration=Debug, clean_build=false}
+timestamp=[2026-03-27 14:36:07], mode=BUILD, duration=0:00:01.268, duration_ms=1268, data={name=week4, configuration=Debug, clean_build=false}

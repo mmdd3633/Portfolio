@@ -1,0 +1,8 @@
+0.7
+2020.2
+Apr 18 2022
+16:05:34
+C:/Tukorea/FPGA_project/week10/week10.sim/sim_1/behav/xsim/glbl.v,1649976174,verilog,,,,glbl,,,,,,,,
+C:/Tukorea/FPGA_project/week10/week10.srcs/sim_1/new/week10_tb.v,1763859989,verilog,,,,tb_week10,,,,,,,,
+C:/Tukorea/FPGA_project/week10/week10.srcs/sources_1/new/week10.v,1763294243,verilog,,C:/Tukorea/FPGA_project/week10/week10.srcs/sim_1/new/week10_tb.v,,week10,,,,,,,,
+C:/Tukorea/FPGA_project/week5/week5.srcs/sources_1/new/seg_decoder.v,1760511915,verilog,,C:/Tukorea/FPGA_project/week10/week10.srcs/sources_1/new/week10.v,,seg_decoder,,,,,,,,

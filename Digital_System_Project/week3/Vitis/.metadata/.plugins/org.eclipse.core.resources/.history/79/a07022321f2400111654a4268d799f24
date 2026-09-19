@@ -1,0 +1,29 @@
+#include <stdio.h>
+#include "platform.h"   // 하드웨어 플랫폼 초기화를 위한 헤더 파일 (템플릿 생성 시 자동 포함됨)
+#include "xil_printf.h" // Xilinx 전용 경량화 출력 함수인 xil_printf를 사용하기 위한 헤더 파일
+
+int main()
+{
+    /*
+     * 1. 플랫폼 초기화
+     * UART 통신 속도 설정, 캐시 메모리 활성화, 프로세서 초기화 등
+     * Zynq 하드웨어 구동에 필요한 필수 설정을 수행합니다.
+     */
+    init_platform();
+
+    /*
+     * 2. xil_printf를 사용한 Hello World 출력 (핵심)
+     * 임베디드 환경에서는 일반 printf보다 메모리 사용량이 적은 xil_printf 사용을 권장합니다.
+     * 주의: 시리얼 터미널에서 줄바꿈이 정상적으로 이루어지려면
+     * 반드시 \n(줄바꿈, Line Feed)과 \r(캐리지 리턴, Carriage Return)을 함께 작성해야 합니다.
+     */
+    xil_printf("Hello World\n\r");
+
+    /*
+     * 3. 플랫폼 정리
+     * 캐시 메모리를 비우고(flush) 시스템을 안전하게 종료할 수 있도록 정리합니다.
+     */
+    cleanup_platform();
+
+    return 0;
+}

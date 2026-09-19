@@ -1,0 +1,85 @@
+#include "xparameters.h"  // 하드웨어 설정(Vivado)에서 생성된 ID 값들이 정의된 핵심 헤더 파일
+#include "xgpio.h"        // Xilinx PL AXI GPIO 제어를 위한 전용 함수 라이브러리
+#include "xil_printf.h"   // UART 터미널 출력을 위한 라이브러리
+
+/* * 하드웨어 디바이스 ID 및 채널 설정
+ * Vivado에서 AXI GPIO를 듀얼 채널로 구성했다고 가정합니다.
+ * (채널 1: LED 10개 출력 / 채널 2: 버튼 4개 입력)
+ */
+#define GPIO_DEVICE_ID  XPAR_AXI_GPIO_0_DEVICE_ID
+#define LED_CHANNEL     1  // LED가 연결된 채널
+#define BTN_CHANNEL     2  // 버튼이 연결된 채널
+
+XGpio Gpio; // GPIO 하드웨어 장치를 제어하기 위한 구조체 인스턴스 선언
+
+int main()
+{
+    int Status;
+    u32 btn_data = 0; // 버튼 입력 값을 저장할 32비트 변수
+
+    xil_printf("LED, 버튼 컨트롤 시스템 시작 \n\r");
+
+    /*
+     * 1. GPIO 초기화 단계
+     */
+    Status = XGpio_Initialize(&Gpio, GPIO_DEVICE_ID);
+    if (Status != XST_SUCCESS) {
+        xil_printf("GPIO 초기화 실패!\n\r");
+        return XST_FAILURE;
+    }
+
+    /*
+     * 2. GPIO 입출력 방향 설정 (매우 중요)
+     * LED 채널(1)은 0x000으로 설정하여 모두 '출력(Output)' 모드로 만듭니다.
+     * BTN 채널(2)은 0xFFF(또는 0xFFFFFFFF)로 설정하여 모두 '입력(Input)' 모드로 만듭니다.
+     */
+    XGpio_SetDataDirection(&Gpio, LED_CHANNEL, 0x00000000); // 0은 출력
+    XGpio_SetDataDirection(&Gpio, BTN_CHANNEL, 0xFFFFFFFF); // 1은 입력
+
+    /*
+     * 3. 요구사항 [초기화]: 모든 LED가 꺼져있다.
+     * 프로그램 시작 직후 LED 채널에 0x000을 출력하여 모든 불을 끕니다.
+     */
+    XGpio_DiscreteWrite(&Gpio, LED_CHANNEL, 0x000);
+    xil_printf("처음: 모든 LED는  OFF.\n\r");
+
+    /*
+     * 4. 무한 루프를 통한 버튼 모니터링 및 LED 제어
+     */
+    while (1) {
+        // 버튼 채널(2)로부터 현재 눌린 버튼의 상태 값을 읽어옵니다.
+        btn_data = XGpio_DiscreteRead(&Gpio, BTN_CHANNEL);
+
+        /*
+         * 버튼 값에 따른 LED 제어 로직
+         * 버튼 4개가 각각 0번, 1번, 2번, 3번 비트에 연결되어 있다고 가정합니다.
+         */
+        if (btn_data == 0x01) {
+            // 요구사항: BTN0를 누르면 모든 LED가 켜진다.
+            // 10개 LED 모두 켜기: 11 1111 1111 (2진수) -> 0x3FF (16진수)
+            XGpio_DiscreteWrite(&Gpio, LED_CHANNEL, 0x3FF);
+
+        } else if (btn_data == 0x02) {
+            // 요구사항: BTN1을 누르면 짝수 번호 LED만 켜진다. (LD0, LD2, LD4, LD6, LD8)
+            // 비트 패턴: 01 0101 0101 (2진수) -> 0x155 (16진수)
+            // (주의: 배열 인덱스처럼 0번 비트부터 시작하므로 제일 오른쪽이 1입니다.)
+            XGpio_DiscreteWrite(&Gpio, LED_CHANNEL, 0x155);
+
+        } else if (btn_data == 0x04) {
+            // 요구사항: BTN2를 누르면 홀수 번호 LED만 켜진다. (LD1, LD3, LD5, LD7, LD9)
+            // 비트 패턴: 10 1010 1010 (2진수) -> 0x2AA (16진수)
+            XGpio_DiscreteWrite(&Gpio, LED_CHANNEL, 0x2AA);
+
+        } else if (btn_data == 0x08) {
+            // 요구사항: BTN3을 누르면 모든 LED가 꺼진다.
+            // 모든 핀에 0 전송
+            XGpio_DiscreteWrite(&Gpio, LED_CHANNEL, 0x000);
+
+        } else {
+            // 요구사항에 명시되지 않은 상태 (아무 버튼도 안 누르거나 2개 이상 누를 때)
+            // 이 블록을 비워두면, 버튼에서 손을 떼더라도 마지막에 켜진 LED 상태가 그대로 유지됩니다.
+        }
+    }
+
+    return 0;
+}

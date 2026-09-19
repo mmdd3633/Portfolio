@@ -1,0 +1,1 @@
+set_property -dict { PACKAGE_PIN W18   IOSTANDARD LVCMOS33 } [get_ports { o_pwm }]; #IO_L22P_T3_34  Schematic=LD10_R

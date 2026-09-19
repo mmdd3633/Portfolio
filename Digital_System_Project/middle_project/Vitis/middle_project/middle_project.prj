@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ASCII"?>
+<sdkproject:SdkProject xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:sdkproject="http://www.xilinx.com/sdkproject" name="middle_project" location="C:/Tukorea/Digital_System_Project/middle_project/Vitis/middle_project" platform="C:/Tukorea/Digital_System_Project/middle_project/Vitis/middle_project_wrapper/export/middle_project_wrapper/middle_project_wrapper.xpfm" platformUID="xilinx:blackboard_d::0.0(custom)" systemProject="middle_project_system" sysConfig="middle_project_wrapper" runtime="cpp" cpu="standalone_ps7_cortexa9_0" cpuInstance="ps7_cortexa9_0" os="standalone" mssSignature="5b62910c0aa4c05d4665cdeb8cbe4139">
+  <configuration name="Debug" id="xilinx.gnu.armv7.exe.debug.1184891317">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+    <lastBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <configuration name="Release" id="xilinx.gnu.armv7.exe.release.855011507" dirty="true">
+    <configBuildOptions xsi:type="sdkproject:SdkOptions"/>
+  </configuration>
+  <template appTemplateName="empty_application"/>
+</sdkproject:SdkProject>

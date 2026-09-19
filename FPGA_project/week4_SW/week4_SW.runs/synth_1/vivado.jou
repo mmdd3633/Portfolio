@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Wed Sep 24 16:05:42 2025
+# Process ID: 3028
+# Current directory: C:/Tukorea/FPGA_project/week4_SW/week4_SW.runs/synth_1
+# Command line: vivado.exe -log week4_SW16.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source week4_SW16.tcl
+# Log file: C:/Tukorea/FPGA_project/week4_SW/week4_SW.runs/synth_1/week4_SW16.vds
+# Journal file: C:/Tukorea/FPGA_project/week4_SW/week4_SW.runs/synth_1\vivado.jou
+# Running On: BOOK-PI4T4K8H7V, OS: Windows, CPU Frequency: 3302 MHz, CPU Physical cores: 8, Host memory: 33834 MB
+#-----------------------------------------------------------
+source week4_SW16.tcl -notrace

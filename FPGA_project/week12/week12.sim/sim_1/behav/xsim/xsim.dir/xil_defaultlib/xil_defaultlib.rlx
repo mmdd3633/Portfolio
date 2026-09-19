@@ -1,0 +1,15 @@
+0.7
+2020.2
+Apr 18 2022
+16:05:34
+C:/Tukorea/FPGA_project/week12/week12.sim/sim_1/behav/xsim/glbl.v,1649976174,verilog,,,,glbl,,,,,,,,
+C:/Tukorea/FPGA_project/week12/week12.srcs/sim_1/new/tb_top_stopwatch.v,1764686154,verilog,,,,tb_top_stopwatch,,,,,,,,
+C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/btn_deb_posedge.v,1764507973,verilog,,C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/clk_div_10ms.v,,btn_deb_posedge,,,,,,,,
+C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/clk_div_10ms.v,1764683662,verilog,,C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/display_pos_ctrl.v,,clk_div_10ms,,,,,,,,
+C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/display_pos_ctrl.v,1764510532,verilog,,C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/led_runner.v,,display_pos_ctrl,,,,,,,,
+C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/led_runner.v,1764683662,verilog,,C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/seg_driver.v,,led_runner,,,,,,,,
+C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/seg_driver.v,1764686966,verilog,,C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/stopwatch_counter.v,,seg_driver,,,,,,,,
+C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/seg_out.v,1764503596,verilog,,C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/stopwatch_counter.v,,seg_out,,,,,,,,
+C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/stopwatch_counter.v,1764510339,verilog,,C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/stopwatch_ctrl.v,,stopwatch_counter,,,,,,,,
+C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/stopwatch_ctrl.v,1764509789,verilog,,C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/top_stopwatch.v,,stopwatch_ctrl,,,,,,,,
+C:/Tukorea/FPGA_project/week12/week12.srcs/sources_1/new/top_stopwatch.v,1764684957,verilog,,C:/Tukorea/FPGA_project/week12/week12.srcs/sim_1/new/tb_top_stopwatch.v,,top_stopwatch,,,,,,,,

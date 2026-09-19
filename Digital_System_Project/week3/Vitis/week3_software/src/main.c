@@ -1,0 +1,66 @@
+//#include <stdio.h>
+//#include "xil_printf.h" // Xilinx 전용 경량화 출력 함수 라이브러리
+//
+//// 빈 프로젝트에는 platform.h가 없으므로 include 하지 않습니다.
+//
+//int main()
+//{
+//    /* * init_platform() 함수 생략
+//     * 빈 프로젝트 환경에서는 Vitis의 ps7_init 스크립트가 UART를 대신 초기화해 줍니다.
+//     */
+//
+//    /*
+//     * xil_printf를 사용한 문자열 출력
+//     * 터미널 창에 텍스트를 전송합니다.
+//     */
+//    xil_printf("Hello World\n\r");
+//
+//    /* cleanup_platform() 함수 생략 */
+//
+//    return 0;
+//}
+
+#include "xparameters.h"  // 하드웨어 설정(Vivado)에서 생성된 ID 값들이 정의된 핵심 헤더 파일
+#include "xgpio.h"        // Xilinx PL AXI GPIO 제어를 위한 전용 함수 라이브러리
+#include "xil_printf.h"   // UART 터미널 출력을 위한 라이브러리
+
+
+#define GPIO_DEVICE_ID  XPAR_AXI_GPIO_0_DEVICE_ID
+#define LED_CHANNEL     1  // 제어할 GPIO IP의 채널 (기본값 1채널 사용)
+
+XGpio Gpio; // GPIO 하드웨어 장치를 제어하기 위한 구조체 인스턴스 선언
+
+int main()
+{
+    int Status;
+
+
+     // 프로그램 시작 시 지정된 문구 출력
+    xil_printf("PL GPIO TEST PROGRAM\n\r");
+
+
+     //GPIO 초기화 단계 - 설정한 DEVICE_ID를 바탕으로 Gpio 하드웨어 모듈을 활성화합니다.
+    Status = XGpio_Initialize(&Gpio, GPIO_DEVICE_ID);
+    if (Status != XST_SUCCESS) {
+        // 초기화 실패 시 터미널에 에러를 출력하고 프로그램을 종료합니다.
+        xil_printf("GPIO Initialization Failed!\n\r");
+        return XST_FAILURE;
+    }
+
+    /*
+     * GPIO 입출력 방향 설정
+     * 두 번째 인자: 제어할 채널 (LED_CHANNEL = 1)
+     * 세 번째 인자: 방향 비트 마스크.
+     * 0x00000000으로 설정하면 AXI GPIO에 연결된 모든 핀이 '출력(Output)' 모드가 된다.
+     */
+    XGpio_SetDataDirection(&Gpio, LED_CHANNEL, 0x00000000);
+
+    /*
+     * 10개의 LED 모두 켜기 (핵심)
+     * XGpio_DiscreteWrite 함수는 지정된 채널에 특정 값을 한 번에 출력합니다. */
+    XGpio_DiscreteWrite(&Gpio, LED_CHANNEL, 0x3FF);
+
+    xil_printf("10 LEDs are successfully turned ON.\n\r");
+
+    return 0;
+}

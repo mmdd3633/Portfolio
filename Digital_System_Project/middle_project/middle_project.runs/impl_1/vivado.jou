@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Fri Apr 17 14:17:59 2026
+# Process ID: 17504
+# Current directory: C:/Tukorea/Digital_System_Project/middle_project/middle_project.runs/impl_1
+# Command line: vivado.exe -log middle_project_wrapper.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source middle_project_wrapper.tcl -notrace
+# Log file: C:/Tukorea/Digital_System_Project/middle_project/middle_project.runs/impl_1/middle_project_wrapper.vdi
+# Journal file: C:/Tukorea/Digital_System_Project/middle_project/middle_project.runs/impl_1\vivado.jou
+# Running On: BOOK-PI4T4K8H7V, OS: Windows, CPU Frequency: 3302 MHz, CPU Physical cores: 8, Host memory: 33834 MB
+#-----------------------------------------------------------
+source middle_project_wrapper.tcl -notrace

@@ -1,0 +1,695 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Fri May 22 14:43:49 2026
+# Process ID: 29944
+# Current directory: C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1
+# Command line: vivado.exe -log Stopwatch_Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Stopwatch_Top.tcl
+# Log file: C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/Stopwatch_Top.vds
+# Journal file: C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1\vivado.jou
+# Running On: BOOK-PI4T4K8H7V, OS: Windows, CPU Frequency: 3302 MHz, CPU Physical cores: 8, Host memory: 33834 MB
+#-----------------------------------------------------------
+source Stopwatch_Top.tcl -notrace
+INFO: [IP_Flow 19-234] Refreshing IP repositories
+INFO: [IP_Flow 19-1704] No user IP repositories specified
+INFO: [IP_Flow 19-2313] Loaded Vivado IP repository 'C:/Xilinx/Vivado/2022.1/data/ip'.
+Command: read_checkpoint -auto_incremental -incremental C:/Tukorea/Digital_System_Project/week11/week11.srcs/utils_1/imports/synth_1/Stopwatch_Top.dcp
+INFO: [Vivado 12-5825] Read reference checkpoint from C:/Tukorea/Digital_System_Project/week11/week11.srcs/utils_1/imports/synth_1/Stopwatch_Top.dcp for incremental synthesis
+INFO: [Vivado 12-7989] Please ensure there are no constraint changes
+Command: synth_design -top Stopwatch_Top -part xc7z007sclg400-1
+Starting synth_design
+Attempting to get a license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z007s'
+INFO: [Device 21-403] Loading part xc7z007sclg400-1
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
+INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
+INFO: [Synth 8-7075] Helper process launched with PID 1164
+---------------------------------------------------------------------------------
+Starting RTL Elaboration : Time (s): cpu = 00:00:03 ; elapsed = 00:00:03 . Memory (MB): peak = 1400.043 ; gain = 0.000
+---------------------------------------------------------------------------------
+INFO: [Synth 8-6157] synthesizing module 'Stopwatch_Top' [C:/Tukorea/Digital_System_Project/week11/week11.srcs/sources_1/new/StopWatch_Top.v:3]
+INFO: [Synth 8-6157] synthesizing module 'week11_wrapper' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/hdl/week11_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'week11' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:302]
+INFO: [Synth 8-6157] synthesizing module 'week11_axi_apb_bridge_0_2' [C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/.Xil/Vivado-29944-BOOK-PI4T4K8H7V/realtime/week11_axi_apb_bridge_0_2_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'week11_axi_apb_bridge_0_2' (0#1) [C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/.Xil/Vivado-29944-BOOK-PI4T4K8H7V/realtime/week11_axi_apb_bridge_0_2_stub.v:5]
+INFO: [Synth 8-6157] synthesizing module 'week11_processing_system7_0_1' [C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/.Xil/Vivado-29944-BOOK-PI4T4K8H7V/realtime/week11_processing_system7_0_1_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'week11_processing_system7_0_1' (0#1) [C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/.Xil/Vivado-29944-BOOK-PI4T4K8H7V/realtime/week11_processing_system7_0_1_stub.v:5]
+WARNING: [Synth 8-7071] port 'I2C0_SDA_O' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'I2C0_SDA_T' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'I2C0_SCL_O' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'I2C0_SCL_T' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'SPI0_SCLK_O' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'SPI0_SCLK_T' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'SPI0_MOSI_O' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'SPI0_MOSI_T' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'SPI0_MISO_O' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'SPI0_MISO_T' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'SPI0_SS_O' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'SPI0_SS1_O' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'SPI0_SS2_O' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'SPI0_SS_T' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'TTC0_WAVE0_OUT' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'TTC0_WAVE1_OUT' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'TTC0_WAVE2_OUT' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'USB0_PORT_INDCTL' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'USB0_VBUS_PWRSELECT' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_ARREADY' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_AWREADY' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BVALID' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RLAST' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RVALID' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WREADY' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BRESP' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RRESP' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_BID' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RID' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RDATA' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RCOUNT' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WCOUNT' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_RACOUNT' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'S_AXI_HP0_WACOUNT' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7071] port 'FCLK_CLK1' of module 'week11_processing_system7_0_1' is unconnected for instance 'processing_system7_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+WARNING: [Synth 8-7023] instance 'processing_system7_0' of module 'week11_processing_system7_0_1' has 136 connections declared, but only 101 given [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:491]
+INFO: [Synth 8-6157] synthesizing module 'week11_ps7_0_axi_periph_0' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:663]
+INFO: [Synth 8-6157] synthesizing module 's00_couplers_imp_T1RV50' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:12]
+INFO: [Synth 8-6157] synthesizing module 'week11_auto_pc_0' [C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/.Xil/Vivado-29944-BOOK-PI4T4K8H7V/realtime/week11_auto_pc_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'week11_auto_pc_0' (0#1) [C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/.Xil/Vivado-29944-BOOK-PI4T4K8H7V/realtime/week11_auto_pc_0_stub.v:5]
+WARNING: [Synth 8-7071] port 'm_axi_awprot' of module 'week11_auto_pc_0' is unconnected for instance 'auto_pc' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:243]
+WARNING: [Synth 8-7071] port 'm_axi_wstrb' of module 'week11_auto_pc_0' is unconnected for instance 'auto_pc' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:243]
+WARNING: [Synth 8-7071] port 'm_axi_arprot' of module 'week11_auto_pc_0' is unconnected for instance 'auto_pc' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:243]
+WARNING: [Synth 8-7023] instance 'auto_pc' of module 'week11_auto_pc_0' has 59 connections declared, but only 56 given [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:243]
+INFO: [Synth 8-6155] done synthesizing module 's00_couplers_imp_T1RV50' (0#1) [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:12]
+INFO: [Synth 8-6155] done synthesizing module 'week11_ps7_0_axi_periph_0' (0#1) [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:663]
+INFO: [Synth 8-6157] synthesizing module 'week11_rst_ps7_0_100M_0' [C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/.Xil/Vivado-29944-BOOK-PI4T4K8H7V/realtime/week11_rst_ps7_0_100M_0_stub.v:5]
+INFO: [Synth 8-6155] done synthesizing module 'week11_rst_ps7_0_100M_0' (0#1) [C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/.Xil/Vivado-29944-BOOK-PI4T4K8H7V/realtime/week11_rst_ps7_0_100M_0_stub.v:5]
+WARNING: [Synth 8-7071] port 'mb_reset' of module 'week11_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:654]
+WARNING: [Synth 8-7071] port 'bus_struct_reset' of module 'week11_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:654]
+WARNING: [Synth 8-7071] port 'peripheral_reset' of module 'week11_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:654]
+WARNING: [Synth 8-7071] port 'interconnect_aresetn' of module 'week11_rst_ps7_0_100M_0' is unconnected for instance 'rst_ps7_0_100M' [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:654]
+WARNING: [Synth 8-7023] instance 'rst_ps7_0_100M' of module 'week11_rst_ps7_0_100M_0' has 10 connections declared, but only 6 given [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:654]
+INFO: [Synth 8-6155] done synthesizing module 'week11' (0#1) [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/synth/week11.v:302]
+INFO: [Synth 8-6155] done synthesizing module 'week11_wrapper' (0#1) [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/hdl/week11_wrapper.v:12]
+INFO: [Synth 8-6157] synthesizing module 'APB_Timer' [C:/Tukorea/Digital_System_Project/week11/week11.srcs/sources_1/new/APB_Timer.v:3]
+	Parameter CLK_FREQ bound to: 100000000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'APB_Timer' (0#1) [C:/Tukorea/Digital_System_Project/week11/week11.srcs/sources_1/new/APB_Timer.v:3]
+INFO: [Synth 8-6157] synthesizing module 'APB_Button' [C:/Tukorea/Digital_System_Project/week11/week11.srcs/sources_1/new/APB_Button.v:3]
+	Parameter CLK_FREQ bound to: 100000000 - type: integer 
+	Parameter DEBOUNCE_CNT bound to: 2000000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'APB_Button' (0#1) [C:/Tukorea/Digital_System_Project/week11/week11.srcs/sources_1/new/APB_Button.v:3]
+INFO: [Synth 8-6157] synthesizing module 'APB_LED' [C:/Tukorea/Digital_System_Project/week11/week11.srcs/sources_1/new/APB_LED.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'APB_LED' (0#1) [C:/Tukorea/Digital_System_Project/week11/week11.srcs/sources_1/new/APB_LED.v:3]
+INFO: [Synth 8-6157] synthesizing module 'APB_7Seg' [C:/Tukorea/Digital_System_Project/week11/week11.srcs/sources_1/new/APB_7Seg.v:3]
+	Parameter CLK_FREQ bound to: 100000000 - type: integer 
+INFO: [Synth 8-6155] done synthesizing module 'APB_7Seg' (0#1) [C:/Tukorea/Digital_System_Project/week11/week11.srcs/sources_1/new/APB_7Seg.v:3]
+INFO: [Synth 8-6155] done synthesizing module 'Stopwatch_Top' (0#1) [C:/Tukorea/Digital_System_Project/week11/week11.srcs/sources_1/new/StopWatch_Top.v:3]
+WARNING: [Synth 8-7129] Port PADDR[31] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[30] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[29] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[28] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[27] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[26] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[25] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[24] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[23] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[22] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[21] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[20] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[19] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[18] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[17] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[16] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[15] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[14] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[13] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[12] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[11] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[10] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[9] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[8] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[31] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[30] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[29] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[28] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[27] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[26] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[25] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[24] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[23] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[22] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[21] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[20] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[19] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[18] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[17] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[16] in module APB_7Seg is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[31] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[30] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[29] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[28] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[27] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[26] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[25] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[24] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[23] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[22] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[21] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[20] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[19] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[18] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[17] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[16] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[15] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[14] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[13] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[12] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[11] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[10] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[9] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[8] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[31] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[30] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[29] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[28] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[27] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[26] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[25] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[24] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[23] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[22] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[21] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[20] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[19] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[18] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[17] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[16] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[15] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[14] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[13] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[12] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[11] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[10] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[9] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[8] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[7] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[6] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[5] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PWDATA[4] in module APB_LED is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[31] in module APB_Button is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[30] in module APB_Button is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[29] in module APB_Button is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[28] in module APB_Button is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[27] in module APB_Button is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[26] in module APB_Button is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[25] in module APB_Button is either unconnected or has no load
+WARNING: [Synth 8-7129] Port PADDR[24] in module APB_Button is either unconnected or has no load
+INFO: [Common 17-14] Message 'Synth 8-7129' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
+---------------------------------------------------------------------------------
+Finished RTL Elaboration : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1400.043 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1400.043 ; gain = 0.000
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:04 ; elapsed = 00:00:04 . Memory (MB): peak = 1400.043 ; gain = 0.000
+---------------------------------------------------------------------------------
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1400.043 ; gain = 0.000
+INFO: [Project 1-570] Preparing netlist for logic optimization
+
+Processing XDC Constraints
+Initializing timing engine
+Parsing XDC File [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc] for cell 'u_week11_wrapper/week11_i/processing_system7_0'
+Finished Parsing XDC File [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc] for cell 'u_week11_wrapper/week11_i/processing_system7_0'
+Parsing XDC File [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_axi_apb_bridge_0_2/week11_axi_apb_bridge_0_2/week11_axi_apb_bridge_0_2_in_context.xdc] for cell 'u_week11_wrapper/week11_i/axi_apb_bridge_0'
+Finished Parsing XDC File [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_axi_apb_bridge_0_2/week11_axi_apb_bridge_0_2/week11_axi_apb_bridge_0_2_in_context.xdc] for cell 'u_week11_wrapper/week11_i/axi_apb_bridge_0'
+Parsing XDC File [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_auto_pc_0/week11_auto_pc_0/week11_auto_pc_0_in_context.xdc] for cell 'u_week11_wrapper/week11_i/ps7_0_axi_periph/s00_couplers/auto_pc'
+Finished Parsing XDC File [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_auto_pc_0/week11_auto_pc_0/week11_auto_pc_0_in_context.xdc] for cell 'u_week11_wrapper/week11_i/ps7_0_axi_periph/s00_couplers/auto_pc'
+Parsing XDC File [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_rst_ps7_0_100M_0/week11_rst_ps7_0_100M_0/week11_rst_ps7_0_100M_0_in_context.xdc] for cell 'u_week11_wrapper/week11_i/rst_ps7_0_100M'
+Finished Parsing XDC File [c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_rst_ps7_0_100M_0/week11_rst_ps7_0_100M_0/week11_rst_ps7_0_100M_0_in_context.xdc] for cell 'u_week11_wrapper/week11_i/rst_ps7_0_100M'
+Parsing XDC File [C:/Tukorea/Digital_System_Project/week11/week11.srcs/constrs_1/new/week11.xdc]
+Finished Parsing XDC File [C:/Tukorea/Digital_System_Project/week11/week11.srcs/constrs_1/new/week11.xdc]
+INFO: [Project 1-236] Implementation specific constraints were found while reading constraint file [C:/Tukorea/Digital_System_Project/week11/week11.srcs/constrs_1/new/week11.xdc]. These constraints will be ignored for synthesis but will be used in implementation. Impacted constraints are listed in the file [.Xil/Stopwatch_Top_propImpl.xdc].
+Resolution: To avoid this warning, move constraints listed in [.Xil/Stopwatch_Top_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
+Parsing XDC File [C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/dont_touch.xdc]
+Finished Parsing XDC File [C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/dont_touch.xdc]
+Completed Processing XDC Constraints
+
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1413.926 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.005 . Memory (MB): peak = 1413.926 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
+---------------------------------------------------------------------------------
+Finished Constraint Validation : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1413.926 ; gain = 13.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Loading Part and Timing Information
+---------------------------------------------------------------------------------
+Loading part: xc7z007sclg400-1
+---------------------------------------------------------------------------------
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1413.926 ; gain = 13.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying 'set_property' XDC Constraints
+---------------------------------------------------------------------------------
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 3).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 4).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[10]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 5).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[10]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 6).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[11]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 7).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[11]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 8).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[12]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 9).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[12]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 10).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[13]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 11).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[13]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 12).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[14]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 13).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[14]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 14).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 15).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 16).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 17).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 18).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 19).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 20).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[4]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 21).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[4]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 22).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[5]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 23).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[5]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 24).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[6]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 25).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[6]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 26).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[7]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 27).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[7]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 28).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[8]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 29).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[8]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 30).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_addr[9]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 31).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_addr[9]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 32).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ba[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 33).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ba[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 34).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ba[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 35).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ba[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 36).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ba[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 37).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ba[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 38).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_cas_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 39).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_cas_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 40).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_cke. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 41).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_cke. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 42).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_cs_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 43).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_cs_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 44).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ck_p. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 45).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ck_p. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 46).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ck_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 47).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ck_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 48).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dm[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 49).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dm[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 50).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dm[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 51).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dm[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 52).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dm[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 53).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dm[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 54).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dm[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 55).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dm[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 56).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_p[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 57).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_p[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 58).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_p[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 59).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_p[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 60).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_p[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 61).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_p[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 62).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_p[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 63).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_p[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 64).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_n[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 65).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_n[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 66).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_n[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 67).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_n[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 68).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_n[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 69).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_n[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 70).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dqs_n[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 71).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dqs_n[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 72).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 73).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 74).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[10]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 75).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[10]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 76).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[11]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 77).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[11]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 78).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[12]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 79).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[12]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 80).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[13]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 81).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[13]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 82).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[14]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 83).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[14]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 84).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[15]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 85).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[15]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 86).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[16]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 87).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[16]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 88).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[17]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 89).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[17]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 90).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[18]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 91).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[18]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 92).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[19]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 93).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[19]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 94).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 95).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 96).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[20]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 97).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[20]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 98).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[21]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 99).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[21]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 100).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[22]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 101).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[22]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 102).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[23]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 103).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[23]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 104).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[24]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 105).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[24]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 106).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[25]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 107).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[25]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 108).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[26]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 109).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[26]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 110).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[27]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 111).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[27]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 112).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[28]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 113).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[28]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 114).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[29]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 115).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[29]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 116).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 117).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 118).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[30]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 119).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[30]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 120).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[31]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 121).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[31]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 122).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 123).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 124).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[4]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 125).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[4]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 126).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[5]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 127).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[5]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 128).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[6]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 129).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[6]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 130).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[7]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 131).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[7]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 132).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[8]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 133).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[8]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 134).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_dq[9]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 135).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_dq[9]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 136).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_reset_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 137).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_reset_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 138).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_odt. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 139).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_odt. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 140).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_ras_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 141).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_ras_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 142).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ddr_vrn. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 143).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ddr_vrn. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 144).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ddr_vrp. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 145).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ddr_vrp. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 146).
+Applied set_property IO_BUFFER_TYPE = NONE for DDR_we_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 147).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for DDR_we_n. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 148).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 149).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[0]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 150).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[10]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 151).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[10]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 152).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[11]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 153).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[11]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 154).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[12]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 155).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[12]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 156).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[13]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 157).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[13]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 158).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[14]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 159).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[14]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 160).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[15]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 161).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[15]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 162).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[16]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 163).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[16]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 164).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[17]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 165).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[17]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 166).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[18]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 167).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[18]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 168).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[19]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 169).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[19]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 170).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 171).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[1]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 172).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[20]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 173).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[20]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 174).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[21]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 175).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[21]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 176).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[22]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 177).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[22]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 178).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[23]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 179).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[23]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 180).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[24]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 181).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[24]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 182).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[25]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 183).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[25]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 184).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[26]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 185).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[26]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 186).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[27]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 187).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[27]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 188).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[28]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 189).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[28]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 190).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[29]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 191).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[29]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 192).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 193).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[2]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 194).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[30]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 195).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[30]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 196).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[31]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 197).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[31]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 198).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[32]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 199).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[32]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 200).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[33]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 201).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[33]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 202).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[34]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 203).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[34]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 204).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[35]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 205).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[35]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 206).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[36]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 207).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[36]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 208).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[37]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 209).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[37]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 210).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[38]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 211).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[38]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 212).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[39]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 213).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[39]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 214).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 215).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[3]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 216).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[40]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 217).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[40]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 218).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[41]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 219).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[41]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 220).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[42]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 221).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[42]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 222).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[43]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 223).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[43]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 224).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[44]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 225).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[44]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 226).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[45]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 227).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[45]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 228).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[46]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 229).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[46]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 230).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[47]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 231).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[47]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 232).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[48]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 233).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[48]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 234).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[49]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 235).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[49]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 236).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[4]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 237).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[4]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 238).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[50]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 239).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[50]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 240).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[51]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 241).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[51]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 242).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[52]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 243).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[52]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 244).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[53]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 245).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[53]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 246).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[5]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 247).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[5]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 248).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[6]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 249).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[6]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 250).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[7]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 251).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[7]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 252).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[8]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 253).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[8]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 254).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_mio[9]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 255).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_mio[9]. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 256).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_clk. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 257).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_clk. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 258).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_porb. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 259).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_porb. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 260).
+Applied set_property IO_BUFFER_TYPE = NONE for FIXED_IO_ps_srstb. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 261).
+Applied set_property CLOCK_BUFFER_TYPE = NONE for FIXED_IO_ps_srstb. (constraint file  c:/Tukorea/Digital_System_Project/week11/week11.gen/sources_1/bd/week11/ip/week11_processing_system7_0_1/week11_processing_system7_0_1/week11_processing_system7_0_1_in_context.xdc, line 262).
+Applied set_property KEEP_HIERARCHY = SOFT for u_week11_wrapper/week11_i. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for u_week11_wrapper/week11_i/processing_system7_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for u_week11_wrapper/week11_i/axi_apb_bridge_0. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for u_week11_wrapper/week11_i/ps7_0_axi_periph/s00_couplers/auto_pc. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for u_week11_wrapper/week11_i/ps7_0_axi_periph. (constraint file  auto generated constraint).
+Applied set_property KEEP_HIERARCHY = SOFT for u_week11_wrapper/week11_i/rst_ps7_0_100M. (constraint file  auto generated constraint).
+---------------------------------------------------------------------------------
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:08 ; elapsed = 00:00:09 . Memory (MB): peak = 1413.926 ; gain = 13.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:09 ; elapsed = 00:00:09 . Memory (MB): peak = 1413.926 ; gain = 13.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start RTL Component Statistics 
+---------------------------------------------------------------------------------
+Detailed RTL Component Info : 
++---Adders : 
+	   2 Input    2 Bit       Adders := 1     
++---Registers : 
+	               16 Bit    Registers := 1     
+	                4 Bit    Registers := 6     
+	                2 Bit    Registers := 1     
+	                1 Bit    Registers := 2     
++---Muxes : 
+	   2 Input   32 Bit        Muxes := 2     
+	   2 Input   16 Bit        Muxes := 2     
+	   4 Input    8 Bit        Muxes := 1     
+	   2 Input    8 Bit        Muxes := 1     
+	   2 Input    4 Bit        Muxes := 5     
+	   4 Input    4 Bit        Muxes := 1     
+	   2 Input    1 Bit        Muxes := 18    
+---------------------------------------------------------------------------------
+Finished RTL Component Statistics 
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Part Resource Summary
+---------------------------------------------------------------------------------
+Part Resources:
+DSPs: 66 (col length:40)
+BRAMs: 100 (col length: RAMB18 40 RAMB36 20)
+---------------------------------------------------------------------------------
+Finished Part Resource Summary
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Cross Boundary and Area Optimization
+---------------------------------------------------------------------------------
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
+---------------------------------------------------------------------------------
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1413.926 ; gain = 13.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Applying XDC Timing Constraints
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:00:13 ; elapsed = 00:00:14 . Memory (MB): peak = 1413.926 ; gain = 13.883
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Timing Optimization
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Timing Optimization : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1431.770 ; gain = 31.727
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Technology Mapping
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Technology Mapping : Time (s): cpu = 00:00:14 ; elapsed = 00:00:15 . Memory (MB): peak = 1431.770 ; gain = 31.727
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Flattening Before IO Insertion
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Final Netlist Cleanup
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished IO Insertion : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1431.770 ; gain = 31.727
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Instances
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Instances : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1431.770 ; gain = 31.727
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Rebuilding User Hierarchy
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1431.770 ; gain = 31.727
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Ports
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Ports : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1431.770 ; gain = 31.727
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Handling Custom Attributes
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1431.770 ; gain = 31.727
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Renaming Generated Nets
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Finished Renaming Generated Nets : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1431.770 ; gain = 31.727
+---------------------------------------------------------------------------------
+---------------------------------------------------------------------------------
+Start Writing Synthesis Report
+---------------------------------------------------------------------------------
+
+Report BlackBoxes: 
++------+------------------------------+----------+
+|      |BlackBox name                 |Instances |
++------+------------------------------+----------+
+|1     |week11_auto_pc_0              |         1|
+|2     |week11_axi_apb_bridge_0_2     |         1|
+|3     |week11_processing_system7_0_1 |         1|
+|4     |week11_rst_ps7_0_100M_0       |         1|
++------+------------------------------+----------+
+
+Report Cell Usage: 
++------+----------------------------+------+
+|      |Cell                        |Count |
++------+----------------------------+------+
+|1     |week11_auto_pc              |     1|
+|2     |week11_axi_apb_bridge_0     |     1|
+|3     |week11_processing_system7_0 |     1|
+|4     |week11_rst_ps7_0_100M       |     1|
+|5     |CARRY4                      |    56|
+|6     |LUT1                        |     8|
+|7     |LUT2                        |    26|
+|8     |LUT3                        |     5|
+|9     |LUT4                        |    45|
+|10    |LUT5                        |    21|
+|11    |LUT6                        |    69|
+|12    |FDRE                        |   252|
+|13    |FDSE                        |    16|
+|14    |IBUF                        |     4|
+|15    |OBUF                        |    16|
++------+----------------------------+------+
+---------------------------------------------------------------------------------
+Finished Writing Synthesis Report : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1431.770 ; gain = 31.727
+---------------------------------------------------------------------------------
+Synthesis finished with 0 errors, 0 critical warnings and 5 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:00:11 ; elapsed = 00:00:16 . Memory (MB): peak = 1431.770 ; gain = 17.844
+Synthesis Optimization Complete : Time (s): cpu = 00:00:16 ; elapsed = 00:00:17 . Memory (MB): peak = 1431.770 ; gain = 31.727
+INFO: [Project 1-571] Translating synthesized netlist
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.008 . Memory (MB): peak = 1442.484 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 56 Unisim elements for replacement
+INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
+INFO: [Project 1-570] Preparing netlist for logic optimization
+INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00 . Memory (MB): peak = 1446.133 ; gain = 0.000
+INFO: [Project 1-111] Unisim Transformation Summary:
+No Unisim elements were transformed.
+
+Synth Design complete, checksum: 2b8056c0
+INFO: [Common 17-83] Releasing license: Synthesis
+51 Infos, 146 Warnings, 0 Critical Warnings and 0 Errors encountered.
+synth_design completed successfully
+synth_design: Time (s): cpu = 00:00:19 ; elapsed = 00:00:21 . Memory (MB): peak = 1446.133 ; gain = 46.090
+INFO: [Common 17-1381] The checkpoint 'C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/Stopwatch_Top.dcp' has been generated.
+INFO: [runtcl-4] Executing : report_utilization -file Stopwatch_Top_utilization_synth.rpt -pb Stopwatch_Top_utilization_synth.pb
+INFO: [Common 17-206] Exiting Vivado at Fri May 22 14:44:17 2026...

@@ -1,0 +1,21 @@
+#include <stdio.h>
+#include "xil_printf.h" // Xilinx 전용 경량화 출력 함수 라이브러리
+
+// 빈 프로젝트에는 platform.h가 없으므로 include 하지 않습니다.
+
+int main()
+{
+    /* * init_platform() 함수 생략
+     * 빈 프로젝트 환경에서는 Vitis의 ps7_init 스크립트가 UART를 대신 초기화해 줍니다.
+     */
+
+    /*
+     * xil_printf를 사용한 문자열 출력
+     * 터미널 창에 텍스트를 전송합니다.
+     */
+    xil_printf("Hello World\n\r");
+
+    /* cleanup_platform() 함수 생략 */
+
+    return 0;
+}

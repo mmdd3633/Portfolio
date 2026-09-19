@@ -1,0 +1,13 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Fri May 22 14:43:49 2026
+# Process ID: 29944
+# Current directory: C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1
+# Command line: vivado.exe -log Stopwatch_Top.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source Stopwatch_Top.tcl
+# Log file: C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1/Stopwatch_Top.vds
+# Journal file: C:/Tukorea/Digital_System_Project/week11/week11.runs/synth_1\vivado.jou
+# Running On: BOOK-PI4T4K8H7V, OS: Windows, CPU Frequency: 3302 MHz, CPU Physical cores: 8, Host memory: 33834 MB
+#-----------------------------------------------------------
+source Stopwatch_Top.tcl -notrace

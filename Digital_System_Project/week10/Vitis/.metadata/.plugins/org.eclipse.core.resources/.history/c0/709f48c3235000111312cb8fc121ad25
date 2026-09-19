@@ -1,0 +1,149 @@
+#include <stdio.h>
+#include "xparameters.h"
+#include "xil_printf.h"
+#include "xil_io.h"
+
+// ==========================================
+// Vivado Verilog에서 정의했던 APB Base Address 및 Offset
+// (주의: Vivado Address Editor에 할당된 주소와 일치해야 함)
+// ==========================================
+#define APB_BASE_ADDR   0x43C00000
+#define MONO_LED_REG    (APB_BASE_ADDR + 0x00)
+#define COLOR_LED_0_REG (APB_BASE_ADDR + 0x04)
+#define COLOR_LED_1_REG (APB_BASE_ADDR + 0x08)
+#define SW_STATUS_REG   (APB_BASE_ADDR + 0x0C)
+
+int main() {
+    int menu_choice;
+    int led_num, color_num, op_mode;
+    u32 current_val;
+
+    // 초기화: 모든 LED 끄기
+    Xil_Out32(MONO_LED_REG, 0x0);
+    Xil_Out32(COLOR_LED_0_REG, 0x0);
+    Xil_Out32(COLOR_LED_1_REG, 0x0);
+
+    // while(1)을 통해 사용자가 종료하기 전까지 무한 반복
+    while (1) {
+        // 메인 메뉴 출력
+        xil_printf("\r\n\r\n===== APB Peripheral Test Menu =====\r\n\r\n");
+        xil_printf("1. Mono LED Control\r\n");
+        xil_printf("2. Color LED 0 Control\r\n");
+        xil_printf("3. Color LED 1 Control\r\n");
+        xil_printf("4. Switch Status Read\r\n\r\n");
+        xil_printf("Select Menu : ");
+
+        // 숫자 입력 받기 및 문자 입력 예외 처리
+        if (scanf("%d", &menu_choice) != 1) {
+            // 숫자가 아닌 값(엔터, 문자 등)이 들어오면 버퍼를 비우고 메뉴 다시 출력
+            char c;
+            while ((c = getchar()) != '\n' && c != '\r' && c != EOF);
+            xil_printf("\r\nInvalid Input! Please enter a number.\r\n");
+            continue;
+        }
+
+        xil_printf("%d\r\n", menu_choice); // 사용자가 입력한 값 에코 출력
+
+        switch (menu_choice) {
+            // ----------------------------------------------------
+            // 1번: 단색 LED 제어
+            // ----------------------------------------------------
+            case 1:
+                xil_printf("\r\nSelect Mono LED Number (0~9) : ");
+                if (scanf("%d", &led_num) != 1) break;
+                xil_printf("%d\r\n", led_num);
+
+                xil_printf("Select Operation (1: ON, 0: OFF) : ");
+                if (scanf("%d", &op_mode) != 1) break;
+                xil_printf("%d\r\n", op_mode);
+
+                if (led_num >= 0 && led_num <= 9) {
+                    current_val = Xil_In32(MONO_LED_REG); // 기존 상태 읽기
+
+                    if (op_mode == 1) {
+                        current_val |= (1 << led_num);    // 해당 비트 켜기
+                    } else if (op_mode == 0) {
+                        current_val &= ~(1 << led_num);   // 해당 비트 끄기
+                    }
+
+                    Xil_Out32(MONO_LED_REG, current_val); // 변경된 상태 쓰기
+                } else {
+                    xil_printf("Invalid LED Number!\r\n");
+                }
+                break;
+
+            // ----------------------------------------------------
+            // 2번: 컬러 LED 0 제어
+            // ----------------------------------------------------
+            case 2:
+                xil_printf("\r\nSelect Color (0: Red, 1: Green, 2: Blue) : ");
+                if (scanf("%d", &color_num) != 1) break;
+                xil_printf("%d\r\n", color_num);
+
+                xil_printf("Select Operation (1: ON, 0: OFF) : ");
+                if (scanf("%d", &op_mode) != 1) break;
+                xil_printf("%d\r\n", op_mode);
+
+                if (color_num >= 0 && color_num <= 2) {
+                    current_val = Xil_In32(COLOR_LED_0_REG); // 기존 상태 읽기
+
+                    if (op_mode == 1) {
+                        current_val |= (1 << color_num);     // 해당 색상 켜기
+                    } else if (op_mode == 0) {
+                        current_val &= ~(1 << color_num);    // 해당 색상 끄기
+                    }
+
+                    Xil_Out32(COLOR_LED_0_REG, current_val); // 변경된 상태 쓰기
+                } else {
+                    xil_printf("Invalid Color Number!\r\n");
+                }
+                break;
+
+            // ----------------------------------------------------
+            // 3번: 컬러 LED 1 제어
+            // ----------------------------------------------------
+            case 3:
+                xil_printf("\r\nSelect Color (0: Red, 1: Green, 2: Blue) : ");
+                if (scanf("%d", &color_num) != 1) break;
+                xil_printf("%d\r\n", color_num);
+
+                xil_printf("Select Operation (1: ON, 0: OFF) : ");
+                if (scanf("%d", &op_mode) != 1) break;
+                xil_printf("%d\r\n", op_mode);
+
+                if (color_num >= 0 && color_num <= 2) {
+                    current_val = Xil_In32(COLOR_LED_1_REG);
+
+                    if (op_mode == 1) {
+                        current_val |= (1 << color_num);
+                    } else if (op_mode == 0) {
+                        current_val &= ~(1 << color_num);
+                    }
+
+                    Xil_Out32(COLOR_LED_1_REG, current_val);
+                } else {
+                    xil_printf("Invalid Color Number!\r\n");
+                }
+                break;
+
+            // ----------------------------------------------------
+            // 4번: 스위치 상태 읽기
+            // ----------------------------------------------------
+            case 4:
+                // 스위치 상태 레지스터에서 값을 읽어옴
+                current_val = Xil_In32(SW_STATUS_REG);
+                // 요구사항의 "SW_STATUS = 0x..." 포맷에 맞춰 16진수(%03X)로 출력
+                xil_printf("\r\nSW_STATUS = 0x%03X\r\n", current_val);
+                break;
+
+            default:
+                xil_printf("Invalid Menu Selection!\r\n");
+                break;
+        }
+
+        // 정상적인 숫자가 입력되었을 때는 scanf가 자동으로 공백과 엔터를 무시하므로
+        // 멈춤을 유발했던 clear_uart_buffer() 함수는 완전히 삭제했습니다.
+    }
+
+    return 0;
+}

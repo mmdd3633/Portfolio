@@ -1,0 +1,16 @@
+#-----------------------------------------------------------
+# Vivado v2022.1 (64-bit)
+# SW Build 3526262 on Mon Apr 18 15:48:16 MDT 2022
+# IP Build 3524634 on Mon Apr 18 20:55:01 MDT 2022
+# Start of session at: Wed Jun 17 14:23:56 2026
+# Process ID: 11940
+# Current directory: C:/Tukorea/Digital_System_Project/Final_Project
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent22480 C:\Tukorea\Digital_System_Project\Final_Project\Final_Project.xpr
+# Log file: C:/Tukorea/Digital_System_Project/Final_Project/vivado.log
+# Journal file: C:/Tukorea/Digital_System_Project/Final_Project\vivado.jou
+# Running On: BOOK-PI4T4K8H7V, OS: Windows, CPU Frequency: 3302 MHz, CPU Physical cores: 8, Host memory: 33834 MB
+#-----------------------------------------------------------
+start_gui
+open_project C:/Tukorea/Digital_System_Project/Final_Project/Final_Project.xpr
+update_compile_order -fileset sources_1
+open_bd_design {C:/Tukorea/Digital_System_Project/Final_Project/Final_Project.srcs/sources_1/bd/Final_Project/Final_Project.bd}
